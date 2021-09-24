@@ -1,22 +1,21 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { Redirect } from "react-router";
-import { serialize } from "object-to-formdata";
-import FormSignUp from "./FormSignUp";
+import React, { useState } from 'react';
+import axios from 'axios';
+import { Redirect } from 'react-router';
+import { serialize } from 'object-to-formdata';
+import FormSignUp from './FormSignUp';
 
 const CreateAccount = () => {
   const initialStateForm = {
-    username: "",
-    email: "",
-    password: "",
-    passwordConfirmation: "",
+    username: '',
+    email: '',
+    password: '',
+    passwordConfirmation: '',
     image: [],
   };
   const [form, updateInput] = useState(initialStateForm);
 
   const handleChange = (e) => {
-    if (e.target.files)
-      updateInput({ ...form, [e.target.name]: e.target.files[0] });
+    if (e.target.files) updateInput({ ...form, [e.target.name]: e.target.files[0] });
     else updateInput({ ...form, [e.target.name]: e.target.value });
   };
 
@@ -24,7 +23,9 @@ const CreateAccount = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const { username, email, password, passwordConfirmation, image } = form;
+    const {
+      username, email, password, passwordConfirmation, image,
+    } = form;
 
     const dataUserCreate = {
       user: {
@@ -41,12 +42,12 @@ const CreateAccount = () => {
     try {
       console.log(formData);
       const request = await axios.post(
-        "https://alleasytrips.herokuapp.com/api/v1/users",
+        'https://alleasytrips.herokuapp.com/api/v1/users',
         formData,
-        { withCredentials: true }
+        { withCredentials: true },
       );
       console.log(request);
-      <Redirect to="/" />;
+        <Redirect to="/" />;
     } catch (error) {
       console.log(error.message);
     }
