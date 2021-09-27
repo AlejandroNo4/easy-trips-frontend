@@ -1,24 +1,38 @@
-const loadingStart = () => ({
-  type: 'LOADING',
+const loadingUser = () => ({
+  type: 'LOADING_USER',
 });
 
-const loadingStop = () => ({
-  type: 'STOP_LOAD',
-});
-
-const sessionStart = (user) => ({
-  type: 'LOGIN',
+const userCreated = (user) => ({
+  type: 'USER_CREATED',
   payload: {
     user,
   },
 });
 
-const sessionEnd = () => ({
-  type: 'LOGOUT',
+const loginUser = (user) => ({
+  type: 'LOGIN_USER',
+  payload: {
+    user,
+  },
 });
 
-const sessionErrors = (errors) => ({
-  type: 'LOGIN_ERRORS',
+const userUpdated = (msg) => ({
+  type: 'USER_UPDATED',
+  payload: {
+    msg,
+  },
+});
+
+const logoutUser = () => ({
+  type: 'LOGOUT_USER',
+});
+
+const userDeleted = () => ({
+  type: 'USER_DELETED',
+});
+
+const userErrors = (errors) => ({
+  type: 'USER_ERRORS',
   payload: {
     errors,
   },
@@ -53,11 +67,13 @@ const fetchedAllTripsErrors = (errors) => ({
 });
 
 export {
-  loadingStart,
-  loadingStop,
-  sessionStart,
-  sessionEnd,
-  sessionErrors,
+  userCreated,
+  loadingUser,
+  loginUser,
+  userUpdated,
+  logoutUser,
+  userDeleted,
+  userErrors,
   fetchedTrip,
   fetchedTripErrors,
   fetchedAllTrips,
