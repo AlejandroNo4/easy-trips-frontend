@@ -29,7 +29,7 @@ const FormSignUp = ({ handleChange, handleSubmit }) => (
     <input
       required
       type="password"
-      id="password-confirmation"
+      id="passwordConfirmation"
       name="passwordConfirmation"
       placeholder="Password Confirmation"
       onChange={handleChange}

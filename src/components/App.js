@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import fetchingGet from '../api/fetchingGet';
 import fetchingDelete from '../api/fetchingDelete';
+import TripList from './TripList';
 
 function App() {
   const userState = useSelector((state) => state.UIReducer);
@@ -25,7 +26,6 @@ function App() {
       dispatch,
       url,
       type,
-      history,
     });
   };
 
@@ -37,7 +37,6 @@ function App() {
     history.push('/signUp');
   };
 
-  console.log(userState);
   if (userState.loading === true) {
     return <h1>------LOADING...------</h1>;
   }
@@ -51,6 +50,7 @@ function App() {
           className="card-image"
         />
         <button onClick={logoutHandler} type="button">LOG OUT</button>
+        <TripList />
       </div>
     );
   }

@@ -1,11 +1,9 @@
 import { combineReducers } from 'redux';
-import allTripsReducer from './allTripsReducer';
-import tripReducer from './tripReducer';
+import tripsReducer from './tripsReducer';
 import UIReducer from './UIReducer';
 
 const rootReducer = combineReducers({
-  allTripsReducer,
-  tripReducer,
+  tripsReducer,
   UIReducer,
 });
 

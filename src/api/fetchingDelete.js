@@ -1,25 +1,20 @@
 import axios from './axios';
 import * as actions from '../actions';
 
-const fetchingDelete = ({
-  dispatch, url, type, history,
-}) => {
+const fetchingDelete = ({ dispatch, url, type }) => {
   if (type === 'UI') {
-    dispatch(actions.loadingUser);
+    dispatch(actions.loadingUser());
   }
   const requestingCard = async () => {
     try {
-      const request = await axios.delete(url, {
+      await axios.delete(url, {
         withCredentials: true,
       });
-      const { data } = request;
       if (type === 'UI') {
-        console.log(data);
         dispatch(actions.logoutUser);
-        history.push('/');
+        window.location.reload();
       }
     } catch (error) {
-      console.log(error);
       if (type === 'UI') {
         dispatch(actions.userErrors(error));
       }

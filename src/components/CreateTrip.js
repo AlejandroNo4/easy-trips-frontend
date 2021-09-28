@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import fetchingPost from '../api/fetchingPost';
-import FormLogin from './FormLogin';
+import FormTrip from './FormTrip';
 import fetchingGet from '../api/fetchingGet';
 
-const Login = () => {
+const CreateTrip = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
   const history = useHistory();
@@ -22,8 +22,13 @@ const Login = () => {
   }, []);
 
   const initialStateForm = {
-    email: '',
-    password: '',
+    destination: '',
+    price: 0,
+    description: '',
+    days: 0,
+    hotel: '',
+    tripType: '',
+    images: [],
   };
   const [form, updateInput] = useState(initialStateForm);
 
@@ -32,20 +37,33 @@ const Login = () => {
     else updateInput({ ...form, [e.target.name]: e.target.value });
   };
 
+  console.log(form);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const {
-      email, password,
+      destination,
+      price,
+      description,
+      days,
+      hotel,
+      tripType,
+      images,
     } = form;
 
     const formData = {
-      user: {
-        email,
-        password,
+      trip: {
+        destination,
+        price,
+        description,
+        days,
+        hotel,
+        trip_type: tripType,
+        images,
       },
     };
-    const url = '/sessions';
-    const type = 'UI';
+    const url = '/trips';
+    const type = 'trip';
     fetchingPost({
       dispatch,
       url,
@@ -60,9 +78,9 @@ const Login = () => {
   }
   return (
     <div>
-      <FormLogin handleChange={handleChange} handleSubmit={handleSubmit} />
+      <FormTrip handleChange={handleChange} handleSubmit={handleSubmit} />
     </div>
   );
 };
 
-export default Login;
+export default CreateTrip;

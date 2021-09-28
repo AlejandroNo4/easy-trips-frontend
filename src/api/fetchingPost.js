@@ -6,7 +6,9 @@ const fetchingPost = ({
   dispatch, url, formData, history, type,
 }) => {
   if (type === 'UI') {
-    dispatch(actions.loadingUser);
+    dispatch(actions.loadingUser());
+  } else if (type === 'trip') {
+    dispatch();
   }
   const dataToSend = serialize(formData);
   const requestingCard = async () => {
@@ -16,11 +18,10 @@ const fetchingPost = ({
       });
       const { data } = request;
       if (type === 'UI') {
-        dispatch(actions.userCreated(data));
+        dispatch(actions.loginUser(data));
         history.push('/');
       }
     } catch (error) {
-      console.log(error);
       if (type === 'UI') {
         dispatch(actions.userErrors(error));
       }

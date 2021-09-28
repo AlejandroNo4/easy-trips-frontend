@@ -2,13 +2,6 @@ const loadingUser = () => ({
   type: 'LOADING_USER',
 });
 
-const userCreated = (user) => ({
-  type: 'USER_CREATED',
-  payload: {
-    user,
-  },
-});
-
 const loginUser = (user) => ({
   type: 'LOGIN_USER',
   payload: {
@@ -38,44 +31,56 @@ const userErrors = (errors) => ({
   },
 });
 
-const fetchedTrip = (trip) => ({
+const loadingTrip = () => ({
+  type: 'LOADING_TRIP',
+});
+
+const tripSuccess = (trip) => ({
   type: 'TRIP_SUCCESS',
   payload: {
     trip,
   },
 });
 
-const fetchedTripErrors = (errors) => ({
+const allTripsSuccess = (trips) => ({
+  type: 'ALL_TRIPS_SUCCESS',
+  payload: {
+    trips,
+  },
+});
+
+const tripUpdated = (trip) => ({
+  type: 'TRIP_UPDATED',
+  payload: {
+    trip,
+  },
+});
+
+const tripErrors = (errors) => ({
   type: 'TRIP_ERRORS',
   payload: {
     errors,
   },
 });
 
-const fetchedAllTrips = (trips) => ({
-  type: 'TRIPS_SUCCESS',
-  payload: {
-    trips,
-  },
-});
-
-const fetchedAllTripsErrors = (errors) => ({
-  type: 'TRIPS_ERRORS',
+const tripDeleted = (errors) => ({
+  type: 'TRIP_DELETED',
   payload: {
     errors,
   },
 });
 
 export {
-  userCreated,
   loadingUser,
   loginUser,
   userUpdated,
   logoutUser,
   userDeleted,
   userErrors,
-  fetchedTrip,
-  fetchedTripErrors,
-  fetchedAllTrips,
-  fetchedAllTripsErrors,
+  loadingTrip,
+  tripSuccess,
+  allTripsSuccess,
+  tripUpdated,
+  tripErrors,
+  tripDeleted,
 };

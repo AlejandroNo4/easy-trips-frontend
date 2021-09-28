@@ -3,7 +3,9 @@ import * as actions from '../actions';
 
 const fetchingGet = ({ dispatch, url, type }) => {
   if (type === 'UI') {
-    dispatch(actions.loadingUser);
+    dispatch(actions.loadingUser());
+  } else if (type === 'trips') {
+    dispatch(actions.loadingTrip());
   }
   const requestingCard = async () => {
     try {
@@ -12,13 +14,16 @@ const fetchingGet = ({ dispatch, url, type }) => {
       });
       const { data } = request;
       if (type === 'UI') {
-        console.log(data);
         dispatch(actions.loginUser(data));
+      } else if (type === 'trips') {
+        console.log(data);
+        dispatch(actions.allTripsSuccess(data));
       }
     } catch (error) {
-      console.log(error);
       if (type === 'UI') {
         dispatch(actions.userErrors(error));
+      } else if (type === 'trips') {
+        dispatch(actions.tripErrors(error));
       }
     }
   };
