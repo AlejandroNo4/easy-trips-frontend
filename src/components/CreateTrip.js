@@ -18,7 +18,7 @@ const CreateTrip = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === true) history.push('/');
+    if (userState.user.logged_in === true && userState.user.admin === false) history.push('/');
   }, []);
 
   const initialStateForm = {
@@ -33,11 +33,9 @@ const CreateTrip = () => {
   const [form, updateInput] = useState(initialStateForm);
 
   const handleChange = (e) => {
-    if (e.target.files) updateInput({ ...form, [e.target.name]: e.target.files[0] });
+    if (e.target.files) updateInput({ ...form, images: Object.values(e.target.files) });
     else updateInput({ ...form, [e.target.name]: e.target.value });
   };
-
-  console.log(form);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

@@ -51,13 +51,14 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
       onChange={handleChange}
     />
     <p>Transportation: </p>
-    <select name="tripType" id="tripType">
+    <select name="tripType" id="tripType" onChange={handleChange}>
       <option value="bus">Bus</option>
       <option value="plane">Plane</option>
       <option value="ship">Ship</option>
     </select>
     <p>Images: </p>
     <input
+      required
       type="file"
       multiple
       id="images"

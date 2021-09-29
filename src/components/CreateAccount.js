@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import { serialize } from 'object-to-formdata';
 import fetchingPost from '../api/fetchingPost';
 import FormSignUp from './FormSignUp';
 import fetchingGet from '../api/fetchingGet';
@@ -34,6 +35,10 @@ const CreateAccount = () => {
     if (e.target.files) updateInput({ ...form, [e.target.name]: e.target.files[0] });
     else updateInput({ ...form, [e.target.name]: e.target.value });
   };
+
+  const toserial = serialize(form);
+
+  console.log([...toserial]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

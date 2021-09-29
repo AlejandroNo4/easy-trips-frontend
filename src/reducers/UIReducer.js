@@ -12,7 +12,6 @@ const UIReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
-        aword: 'que rico está Jesus santaella',
       };
     case 'LOGIN_USER':
       return {

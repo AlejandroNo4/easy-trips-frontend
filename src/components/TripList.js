@@ -17,7 +17,6 @@ const TripList = () => {
     });
   }, []);
 
-  console.log(tripsState);
   const allTrips = tripsState.all_trips_data;
 
   if (tripsState.loading === true) {

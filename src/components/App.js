@@ -37,6 +37,10 @@ function App() {
     history.push('/signUp');
   };
 
+  const createHandler = () => {
+    history.push('/add-trip');
+  };
+
   if (userState.loading === true) {
     return <h1>------LOADING...------</h1>;
   }
@@ -51,6 +55,7 @@ function App() {
         />
         <button onClick={logoutHandler} type="button">LOG OUT</button>
         <TripList />
+        {userState.user.admin === true && <button onClick={createHandler} type="button">Create a new trip</button>}
       </div>
     );
   }

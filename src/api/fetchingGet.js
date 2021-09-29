@@ -16,7 +16,6 @@ const fetchingGet = ({ dispatch, url, type }) => {
       if (type === 'UI') {
         dispatch(actions.loginUser(data));
       } else if (type === 'trips') {
-        console.log(data);
         dispatch(actions.allTripsSuccess(data));
       }
     } catch (error) {
