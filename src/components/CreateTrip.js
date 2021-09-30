@@ -2,12 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import fetchingPost from '../api/fetchingPost';
-import FormSignUp from './FormSignUp';
+import FormTrip from './FormTrip';
 import fetchingGet from '../api/fetchingGet';
 
-const CreateAccount = () => {
+const CreateTrip = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
+  const tripState = useSelector((state) => state.tripsReducer);
   const history = useHistory();
 
   useEffect(() => {
@@ -18,40 +19,50 @@ const CreateAccount = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === true) history.push('/');
+    if (userState.user.logged_in === true && userState.user.admin === false) history.push('/');
   }, []);
 
   const initialStateForm = {
-    username: '',
-    email: '',
-    password: '',
-    passwordConfirmation: '',
-    image: [],
+    destination: '',
+    price: 0,
+    description: '',
+    days: 0,
+    hotel: '',
+    tripType: 'City',
+    images: [],
   };
   const [form, updateInput] = useState(initialStateForm);
 
   const handleChange = (e) => {
-    if (e.target.files) updateInput({ ...form, [e.target.name]: e.target.files[0] });
+    if (e.target.files) updateInput({ ...form, images: Object.values(e.target.files) });
     else updateInput({ ...form, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const {
-      username, email, password, passwordConfirmation, image,
+      destination,
+      price,
+      description,
+      days,
+      hotel,
+      tripType,
+      images,
     } = form;
 
     const formData = {
-      user: {
-        username,
-        email,
-        password,
-        password_confirmation: passwordConfirmation,
-        image,
+      trip: {
+        destination,
+        price,
+        description,
+        days,
+        hotel,
+        trip_type: tripType,
+        images,
       },
     };
-    const url = '/users';
-    const type = 'UI';
+    const url = '/trips';
+    const type = 'trip';
     fetchingPost({
       dispatch,
       url,
@@ -61,14 +72,14 @@ const CreateAccount = () => {
     });
   };
 
-  if (userState.loading === true) {
-    return <h1>------LOADING...------</h1>;
+  if (tripState.loading === true) {
+    return <h1>------CREATING TRIP...------</h1>;
   }
   return (
     <div>
-      <FormSignUp handleChange={handleChange} handleSubmit={handleSubmit} />
+      <FormTrip handleChange={handleChange} handleSubmit={handleSubmit} />
     </div>
   );
 };
 
-export default CreateAccount;
+export default CreateTrip;

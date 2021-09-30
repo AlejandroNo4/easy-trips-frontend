@@ -1,6 +1,6 @@
 import PropTypes from 'prop-types';
 
-const FormSignUp = ({ handleChange, handleSubmit }) => (
+const FormUpdateUser = ({ handleChange, handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <input
       required
@@ -19,40 +19,24 @@ const FormSignUp = ({ handleChange, handleSubmit }) => (
       onChange={handleChange}
     />
     <input
-      required
-      type="password"
-      id="password"
-      name="password"
-      placeholder="password"
-      onChange={handleChange}
-    />
-    <input
-      required
-      type="password"
-      id="passwordConfirmation"
-      name="passwordConfirmation"
-      placeholder="Password Confirmation"
-      onChange={handleChange}
-    />
-    <input
       type="file"
       id="image"
       name="image"
       accept="image/png, image/jpeg"
       onChange={handleChange}
     />
-    <button type="submit">Create Account</button>
+    <button type="submit">Update Account</button>
   </form>
 );
 
-FormSignUp.defaultProps = {
+FormUpdateUser.defaultProps = {
   handleChange: null,
   handleSubmit: null,
 };
 
-FormSignUp.propTypes = {
+FormUpdateUser.propTypes = {
   handleChange: PropTypes.func,
   handleSubmit: PropTypes.func,
 };
 
-export default FormSignUp;
+export default FormUpdateUser;

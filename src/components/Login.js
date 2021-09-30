@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import fetchingPost from '../api/fetchingPost';
-import FormSignUp from './FormSignUp';
+import FormLogin from './FormLogin';
 import fetchingGet from '../api/fetchingGet';
 
-const CreateAccount = () => {
+const Login = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
   const history = useHistory();
@@ -22,11 +22,8 @@ const CreateAccount = () => {
   }, []);
 
   const initialStateForm = {
-    username: '',
     email: '',
     password: '',
-    passwordConfirmation: '',
-    image: [],
   };
   const [form, updateInput] = useState(initialStateForm);
 
@@ -35,22 +32,19 @@ const CreateAccount = () => {
     else updateInput({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const {
-      username, email, password, passwordConfirmation, image,
+      email, password,
     } = form;
 
     const formData = {
       user: {
-        username,
         email,
         password,
-        password_confirmation: passwordConfirmation,
-        image,
       },
     };
-    const url = '/users';
+    const url = '/sessions';
     const type = 'UI';
     fetchingPost({
       dispatch,
@@ -66,9 +60,9 @@ const CreateAccount = () => {
   }
   return (
     <div>
-      <FormSignUp handleChange={handleChange} handleSubmit={handleSubmit} />
+      <FormLogin handleChange={handleChange} handleSubmit={handleSubmit} />
     </div>
   );
 };
 
-export default CreateAccount;
+export default Login;
