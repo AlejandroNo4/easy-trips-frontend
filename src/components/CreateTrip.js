@@ -8,6 +8,7 @@ import fetchingGet from '../api/fetchingGet';
 const CreateTrip = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
+  const tripState = useSelector((state) => state.tripsReducer);
   const history = useHistory();
 
   useEffect(() => {
@@ -27,7 +28,7 @@ const CreateTrip = () => {
     description: '',
     days: 0,
     hotel: '',
-    tripType: '',
+    tripType: 'City',
     images: [],
   };
   const [form, updateInput] = useState(initialStateForm);
@@ -71,8 +72,8 @@ const CreateTrip = () => {
     });
   };
 
-  if (userState.loading === true) {
-    return <h1>------LOADING...------</h1>;
+  if (tripState.loading === true) {
+    return <h1>------CREATING TRIP...------</h1>;
   }
   return (
     <div>

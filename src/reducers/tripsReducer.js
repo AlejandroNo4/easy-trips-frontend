@@ -1,5 +1,5 @@
 const initialState = {
-  loading: true,
+  loading: false,
   trtip_data: {},
   all_trips_data: [],
   errors: '',

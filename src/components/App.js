@@ -4,6 +4,7 @@ import { useHistory } from 'react-router';
 import fetchingGet from '../api/fetchingGet';
 import fetchingDelete from '../api/fetchingDelete';
 import TripList from './TripList';
+import UserPanel from './UserPanel';
 
 function App() {
   const userState = useSelector((state) => state.UIReducer);
@@ -52,17 +53,9 @@ function App() {
     return (
       <div>
         <h1>-----LOGGED IN-------</h1>
-        <img
-          src={userState.user.user_thumnail}
-          alt="imeime"
-          className="card-image"
-        />
-        <p>{userState.user.username}</p>
-        <p>{userState.user.id}</p>
-        <button onClick={logoutHandler} type="button">LOG OUT</button>
-        <button onClick={updateHandler} type="button">UPDATE ACCOUNT</button>
-        <TripList />
+        <UserPanel logoutHandler={logoutHandler} updateHandler={updateHandler} />
         {userState.user.admin === true && <button onClick={createHandler} type="button">Create a new trip</button>}
+        <TripList />
       </div>
     );
   }

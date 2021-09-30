@@ -10,7 +10,7 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
       placeholder="destination"
       onChange={handleChange}
     />
-    <p>Price: </p>
+    <p>Price per person: </p>
     <input
       required
       type="number"
@@ -24,6 +24,7 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
     <p>Description: </p>
     <textarea
       required
+      maxLength="400"
       id="description"
       name="description"
       rows="10"
@@ -44,17 +45,18 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
     <p>Hotel: </p>
     <input
       required
+      maxLength="50"
       type="text"
       id="hotel"
       name="hotel"
       placeholder="Hotel"
       onChange={handleChange}
     />
-    <p>Transportation: </p>
+    <p>Type: </p>
     <select name="tripType" id="tripType" onChange={handleChange}>
-      <option value="bus">Bus</option>
-      <option value="plane">Plane</option>
-      <option value="ship">Ship</option>
+      <option value="bus">City</option>
+      <option value="plane">Beach</option>
+      <option value="ship">Nature</option>
     </select>
     <p>Images: </p>
     <input

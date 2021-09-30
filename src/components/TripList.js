@@ -25,6 +25,8 @@ const TripList = () => {
     );
   }
 
+  console.log(allTrips);
+
   return (
     <ul>
       {allTrips.map((trip) => (
