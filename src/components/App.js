@@ -29,16 +29,20 @@ function App() {
     });
   };
 
-  const toLogin = () => {
+  const loginHandler = () => {
     history.push('/login');
   };
 
-  const toSignUp = () => {
-    history.push('/signUp');
+  const signUpHandler = () => {
+    history.push('/sign-up');
   };
 
   const createHandler = () => {
     history.push('/add-trip');
+  };
+
+  const updateHandler = () => {
+    history.push('/update-account');
   };
 
   if (userState.loading === true) {
@@ -53,7 +57,10 @@ function App() {
           alt="imeime"
           className="card-image"
         />
+        <p>{userState.user.username}</p>
+        <p>{userState.user.id}</p>
         <button onClick={logoutHandler} type="button">LOG OUT</button>
+        <button onClick={updateHandler} type="button">UPDATE ACCOUNT</button>
         <TripList />
         {userState.user.admin === true && <button onClick={createHandler} type="button">Create a new trip</button>}
       </div>
@@ -63,8 +70,8 @@ function App() {
     <div className="App">
       <h1>Connected!</h1>
       <h2>Status: NOT logged in</h2>
-      <button onClick={toLogin} type="button">---Login---</button>
-      <button onClick={toSignUp} type="button">---Sign Up---</button>
+      <button onClick={loginHandler} type="button">---Login---</button>
+      <button onClick={signUpHandler} type="button">---Sign Up---</button>
     </div>
   );
 }

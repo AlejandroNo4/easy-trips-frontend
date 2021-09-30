@@ -1,7 +1,9 @@
 import axios from './axios';
 import * as actions from '../actions';
 
-const fetchingDelete = ({ dispatch, url, type }) => {
+const fetchingDelete = ({
+  dispatch, url, type,
+}) => {
   if (type === 'UI') {
     dispatch(actions.loadingUser());
   }
@@ -11,8 +13,7 @@ const fetchingDelete = ({ dispatch, url, type }) => {
         withCredentials: true,
       });
       if (type === 'UI') {
-        dispatch(actions.logoutUser);
-        window.location.reload();
+        dispatch(actions.logoutUser());
       }
     } catch (error) {
       if (type === 'UI') {
