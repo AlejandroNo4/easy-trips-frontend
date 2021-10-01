@@ -25,10 +25,8 @@ const TripList = () => {
     );
   }
 
-  console.log(allTrips);
-
   return (
-    <ul>
+    <ul className="all-cards-container d-flex justify-center align-center">
       {allTrips.map((trip) => (
         <TripPreview trip={trip} key={trip.id} />
       ))}

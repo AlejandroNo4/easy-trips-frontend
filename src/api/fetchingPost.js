@@ -24,7 +24,6 @@ const fetchingPost = ({
         history.push('/');
       }
     } catch (error) {
-      console.log(error);
       if (type === 'UI') {
         dispatch(actions.userErrors(error));
       } else if (type === 'trip') {
