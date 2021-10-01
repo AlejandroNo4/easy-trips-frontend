@@ -126,6 +126,13 @@ body {
   color: gold;
 }
 
+/* --------------------------- TRIP PREVIEW ------------------------ */
+
+.trip {
+  margin-top: 50px;
+  border: 1px solid salmon;
+}
+
 @media (max-width: 768px) {
   .all-cards-container {
     display: flex;

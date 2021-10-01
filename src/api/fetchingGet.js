@@ -4,7 +4,7 @@ import * as actions from '../actions';
 const fetchingGet = ({ dispatch, url, type }) => {
   if (type === 'UI') {
     dispatch(actions.loadingUser());
-  } else if (type === 'trips') {
+  } else {
     dispatch(actions.loadingTrip());
   }
   const requestingCard = async () => {
@@ -17,6 +17,8 @@ const fetchingGet = ({ dispatch, url, type }) => {
         dispatch(actions.loginUser(data));
       } else if (type === 'trips') {
         dispatch(actions.allTripsSuccess(data));
+      } else if (type === 'trip') {
+        dispatch(actions.tripSuccess(data));
       }
     } catch (error) {
       if (type === 'UI') {

@@ -7,7 +7,7 @@ const TripPreview = ({ trip }) => {
   const imgSrc = trip.trip_images[0].image;
   return (
     <li className="card-container">
-      <Link to="/">
+      <Link to={`/trips/${trip.id}`}>
         <img src={imgSrc} alt={trip.destination} className="img-preview" />
         <div className="description-card d-flex space-between">
           <div>

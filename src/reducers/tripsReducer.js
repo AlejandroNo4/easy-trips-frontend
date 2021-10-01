@@ -1,6 +1,6 @@
 const initialState = {
   loading: false,
-  trtip_data: {},
+  trip_data: {},
   all_trips_data: [],
   errors: '',
 };
@@ -10,7 +10,7 @@ const tripsReducer = (state = initialState, action) => {
     case 'LOADING_TRIP':
       return { ...state, loading: true };
     case 'TRIP_SUCCESS':
-      return { ...state, trips_data: action.payload.trip, loading: false };
+      return { ...state, trip_data: action.payload.trip, loading: false };
     case 'TRIP_UPDATED':
       return {
         ...state,

@@ -1,18 +1,22 @@
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
+import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import fetchingGet from '../api/fetchingGet';
 import fetchingDelete from '../api/fetchingDelete';
-import TripList from './TripList';
 import UserPanel from './UserPanel';
+import Trip from './Trip';
 
-function App() {
+const TripItemContainer = ({ match }) => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const userState = useSelector((state) => state.UIReducer);
   const [showPanel, updatePanel] = useState('d-none');
-  const history = useHistory();
-  const dispatch = useDispatch();
+  const {
+    params: { tripId },
+  } = match;
 
   useEffect(() => {
     const url = 'logged_in';
@@ -22,6 +26,7 @@ function App() {
       url,
       type,
     });
+    if (userState.user.logged_in === false) history.push('/');
   }, []);
 
   const logoutHandler = () => {
@@ -32,14 +37,6 @@ function App() {
       url,
       type,
     });
-  };
-
-  const loginHandler = () => {
-    history.push('/login');
-  };
-
-  const signUpHandler = () => {
-    history.push('/sign-up');
   };
 
   const createHandler = () => {
@@ -61,38 +58,28 @@ function App() {
   if (userState.loading === true) {
     return <h1>------LOADING USER...------</h1>;
   }
-  if (userState.user.logged_in === true && userState.loading === false) {
-    return (
-      <div className="d-flex">
-        <UserPanel
-          logoutHandler={logoutHandler}
-          updateHandler={updateHandler}
-          createHandler={createHandler}
-          display={showPanel}
-        />
-        <div>
-          <div className="nav-bar-mobile d-flex space-between">
-            <FontAwesomeIcon icon={faBars} onClick={toggleUserPanel} />
-            <h1 className="main-title">Easy Trips</h1>
-            <FontAwesomeIcon icon={faSearch} />
-          </div>
-        </div>
-        <TripList />
-      </div>
-    );
-  }
   return (
-    <div className="app">
-      <h1>Connected!</h1>
-      <h2>Status: NOT logged in</h2>
-      <button onClick={loginHandler} type="button">
-        ---Login---
-      </button>
-      <button onClick={signUpHandler} type="button">
-        ---Sign Up---
-      </button>
+    <div className="d-flex">
+      <UserPanel
+        logoutHandler={logoutHandler}
+        updateHandler={updateHandler}
+        createHandler={createHandler}
+        display={showPanel}
+      />
+      <div>
+        <div className="nav-bar-mobile d-flex space-between">
+          <FontAwesomeIcon icon={faBars} onClick={toggleUserPanel} />
+          <h1 className="main-title">Trip</h1>
+          <FontAwesomeIcon icon={faSearch} />
+        </div>
+      </div>
+      <Trip id={tripId} />
     </div>
   );
-}
+};
 
-export default App;
+TripItemContainer.propTypes = {
+  match: PropTypes.objectOf(PropTypes.any).isRequired,
+};
+
+export default TripItemContainer;
