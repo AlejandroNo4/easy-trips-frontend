@@ -1,7 +1,7 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import CreateAccount from './CreateAccount';
 import Login from './Login';
-import CreateTrip from './CreateTrip';
+import TripManagement from './TripManagement';
 import UpdateAccount from './UpdateAccount';
 import App from './App';
 import TripList from './TripList';
@@ -20,8 +20,9 @@ const RoutesIndex = () => (
         </Route>
         <Route path="/sign-up" element={<CreateAccount />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/add-trip" element={<CreateTrip />} />
+        <Route path="/add-trip" element={<TripManagement />} />
         <Route path="/update-account" element={<UpdateAccount />} />
+        <Route path="/update-trip/:tripId" element={<TripManagement />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>

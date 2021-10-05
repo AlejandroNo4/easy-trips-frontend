@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router';
 import fetchingPost from '../api/fetchingPost';
 import FormTrip from './FormTrip';
 import fetchingGet from '../api/fetchingGet';
+import fetchingDelete from '../api/fetchingDelete';
+import fetchingPatch from '../api/fetchingPatch';
 
-const CreateTrip = () => {
+const TripManagement = () => {
+  const { tripId } = useParams();
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
   const tripState = useSelector((state) => state.tripsReducer);
@@ -41,13 +45,7 @@ const CreateTrip = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const {
-      destination,
-      price,
-      description,
-      days,
-      hotel,
-      tripType,
-      images,
+      destination, price, description, days, hotel, tripType, images,
     } = form;
 
     const formData = {
@@ -61,15 +59,37 @@ const CreateTrip = () => {
         images,
       },
     };
-    const url = '/trips';
+    let url = '/trips';
     const type = 'trip';
-    fetchingPost({
+    if (!tripId) {
+      fetchingPost({
+        dispatch,
+        url,
+        formData,
+        navigate,
+        type,
+      });
+    } else {
+      url = `/trips/${tripId}`;
+      fetchingPatch({
+        dispatch,
+        url,
+        formData,
+        navigate,
+        type,
+      });
+    }
+  };
+
+  const handleDelete = () => {
+    const url = `/trips/${tripId}`;
+    const type = 'trip';
+    fetchingDelete({
       dispatch,
       url,
-      formData,
-      navigate,
       type,
     });
+    navigate('/');
   };
 
   if (tripState.loading === true) {
@@ -78,8 +98,13 @@ const CreateTrip = () => {
   return (
     <div>
       <FormTrip handleChange={handleChange} handleSubmit={handleSubmit} />
+      {tripId !== undefined && (
+        <button type="button" className="user-info-btn" onClick={handleDelete}>
+          Delete Trip
+        </button>
+      )}
     </div>
   );
 };
 
-export default CreateTrip;
+export default TripManagement;

@@ -5,6 +5,7 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 import fetchingGet from '../api/fetchingGet';
 import { cleanupTrip } from '../actions';
 import FavBtn from './FavBtn';
@@ -12,7 +13,9 @@ import FavBtn from './FavBtn';
 const Trip = () => {
   const { tripId } = useParams();
   const tripsState = useSelector((state) => state.tripsReducer);
+  const userState = useSelector((state) => state.UIReducer);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const trip = tripsState.trip_data;
 
   useEffect(() => {
@@ -27,6 +30,10 @@ const Trip = () => {
       dispatch(cleanupTrip());
     };
   }, []);
+
+  const updateTripHandler = () => {
+    navigate(`/update-trip/${tripId}`);
+  };
 
   if (tripsState.loading === true || trip.trip_images === undefined) {
     return <h1>✈️🚌🛳----LOADING TRIPS</h1>;
@@ -81,6 +88,15 @@ const Trip = () => {
         <p className="bold">Description:</p>
         <p className="b-15">{trip.description}</p>
       </div>
+      {userState.user.admin === true && (
+      <button
+        onClick={updateTripHandler}
+        type="button"
+        className="user-info-btn"
+      >
+        Update Trip
+      </button>
+      )}
       <FavBtn id={tripId} />
     </div>
   );
