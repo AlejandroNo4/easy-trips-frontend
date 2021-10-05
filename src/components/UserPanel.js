@@ -1,9 +1,34 @@
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
+import fetchingDelete from '../api/fetchingDelete';
 
-const UserPanel = ({
-  logoutHandler, updateHandler, createHandler, display,
-}) => {
+const UserPanel = ({ display }) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const logoutHandler = () => {
+    const url = 'logout';
+    const type = 'UI';
+    fetchingDelete({
+      dispatch,
+      url,
+      type,
+    });
+  };
+
+  const updateHandler = () => {
+    navigate('/update-account');
+  };
+
+  const createHandler = () => {
+    navigate('/add-trip');
+  };
+
+  const favHandler = () => {
+    navigate('/favorites');
+  };
+
   const userState = useSelector((state) => state.UIReducer);
   const { user } = userState;
   const { username, email } = user;
@@ -19,19 +44,35 @@ const UserPanel = ({
       </div>
       <div className="buttons-container d-flex flex-column justify-between">
         <div>
-          <button type="button" className="user-info-btn">
+          <button
+            onClick={favHandler}
+            type="button"
+            className="user-info-btn"
+          >
             Show favorites
           </button>
-          <button onClick={updateHandler} type="button" className="user-info-btn">
+          <button
+            onClick={updateHandler}
+            type="button"
+            className="user-info-btn"
+          >
             Update Account
           </button>
           {userState.user.admin === true && (
-            <button onClick={createHandler} type="button" className="user-info-btn">
+            <button
+              onClick={createHandler}
+              type="button"
+              className="user-info-btn"
+            >
               Create New Trip
             </button>
           )}
         </div>
-        <button onClick={logoutHandler} type="button" className="user-info-btn logout-btn">
+        <button
+          onClick={logoutHandler}
+          type="button"
+          className="user-info-btn logout-btn"
+        >
           Logout
         </button>
       </div>
@@ -40,9 +81,6 @@ const UserPanel = ({
 };
 
 UserPanel.propTypes = {
-  logoutHandler: PropTypes.func.isRequired,
-  updateHandler: PropTypes.func.isRequired,
-  createHandler: PropTypes.func.isRequired,
   display: PropTypes.string.isRequired,
 };
 

@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router';
+import { useNavigate, Outlet } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import fetchingGet from '../api/fetchingGet';
-import fetchingDelete from '../api/fetchingDelete';
-import TripList from './TripList';
 import UserPanel from './UserPanel';
 
 function App() {
   const userState = useSelector((state) => state.UIReducer);
   const [showPanel, updatePanel] = useState('d-none');
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,30 +22,16 @@ function App() {
     });
   }, []);
 
-  const logoutHandler = () => {
-    const url = 'logout';
-    const type = 'UI';
-    fetchingDelete({
-      dispatch,
-      url,
-      type,
-    });
-  };
-
   const loginHandler = () => {
-    history.push('/login');
+    navigate('/login');
   };
 
   const signUpHandler = () => {
-    history.push('/sign-up');
+    navigate('/sign-up');
   };
 
-  const createHandler = () => {
-    history.push('/add-trip');
-  };
-
-  const updateHandler = () => {
-    history.push('/update-account');
+  const homeHandler = () => {
+    navigate('/');
   };
 
   const toggleUserPanel = () => {
@@ -64,20 +48,15 @@ function App() {
   if (userState.user.logged_in === true && userState.loading === false) {
     return (
       <div className="d-flex">
-        <UserPanel
-          logoutHandler={logoutHandler}
-          updateHandler={updateHandler}
-          createHandler={createHandler}
-          display={showPanel}
-        />
+        <UserPanel display={showPanel} />
         <div>
           <div className="nav-bar-mobile d-flex space-between">
             <FontAwesomeIcon icon={faBars} onClick={toggleUserPanel} />
             <h1 className="main-title">Easy Trips</h1>
-            <FontAwesomeIcon icon={faSearch} />
+            <FontAwesomeIcon icon={faHome} onClick={homeHandler} />
           </div>
         </div>
-        <TripList />
+        <Outlet />
       </div>
     );
   }

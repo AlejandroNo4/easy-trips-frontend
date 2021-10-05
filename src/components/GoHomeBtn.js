@@ -1,9 +1,9 @@
-import { useHistory } from 'react-router';
+import { useNavigate } from 'react-router';
 
 const GoHomeBtn = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const handleHome = () => {
-    history.push('/');
+    navigate('/');
   };
   return (
     <button type="button" onClick={handleHome}>Back to home</button>

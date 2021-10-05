@@ -54,9 +54,9 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
     />
     <p>Type: </p>
     <select name="tripType" id="tripType" onChange={handleChange}>
-      <option value="bus">City</option>
-      <option value="plane">Beach</option>
-      <option value="ship">Nature</option>
+      <option value="City">City</option>
+      <option value="Beach">Beach</option>
+      <option value="Ship">Nature</option>
     </select>
     <p>Images: </p>
     <input

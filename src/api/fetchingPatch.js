@@ -3,7 +3,7 @@ import axios from './axios';
 import * as actions from '../actions';
 
 const fetchingPatch = ({
-  dispatch, url, formData, history, type,
+  dispatch, url, formData, navigate, type,
 }) => {
   if (type === 'UI') {
     dispatch(actions.loadingUser());
@@ -19,9 +19,9 @@ const fetchingPatch = ({
       const { data } = request;
       if (type === 'UI') {
         dispatch(actions.userUpdated(data));
-        history.push('/');
+        navigate('/');
       } else if (type === 'trip') {
-        history.push('/');
+        navigate('/');
       }
     } catch (error) {
       if (type === 'UI') {

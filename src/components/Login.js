@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import fetchingPost from '../api/fetchingPost';
 import FormLogin from './FormLogin';
 import fetchingGet from '../api/fetchingGet';
@@ -8,7 +8,7 @@ import fetchingGet from '../api/fetchingGet';
 const Login = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = 'logged_in';
@@ -18,7 +18,7 @@ const Login = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === true) history.push('/');
+    if (userState.user.logged_in === true) navigate('/');
   }, []);
 
   const initialStateForm = {
@@ -40,7 +40,7 @@ const Login = () => {
 
     const formData = {
       user: {
-        email,
+        email: email.toLowerCase(),
         password,
       },
     };
@@ -50,7 +50,7 @@ const Login = () => {
       dispatch,
       url,
       formData,
-      history,
+      navigate,
       type,
     });
   };

@@ -3,9 +3,9 @@ import axios from './axios';
 import * as actions from '../actions';
 
 const fetchingPost = ({
-  dispatch, url, formData, history, type,
+  dispatch, url, formData, navigate, type,
 }) => {
-  if (type === 'UI') {
+  if (type === 'UI' || type === 'fav') {
     dispatch(actions.loadingUser());
   } else if (type === 'trip') {
     dispatch(actions.loadingTrip());
@@ -19,9 +19,11 @@ const fetchingPost = ({
       const { data } = request;
       if (type === 'UI') {
         dispatch(actions.loginUser(data));
-        history.push('/');
+        navigate('/');
       } else if (type === 'trip') {
-        history.push('/');
+        navigate('/');
+      } else if (type === 'fav') {
+        window.location.reload();
       }
     } catch (error) {
       if (type === 'UI') {

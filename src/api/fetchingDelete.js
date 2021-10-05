@@ -4,16 +4,18 @@ import * as actions from '../actions';
 const fetchingDelete = ({
   dispatch, url, type,
 }) => {
-  if (type === 'UI') {
+  if (type === 'UI' || type === 'fav') {
     dispatch(actions.loadingUser());
   }
-  const requestingCard = async () => {
+  const fetchDelete = async () => {
     try {
       await axios.delete(url, {
         withCredentials: true,
       });
       if (type === 'UI') {
         dispatch(actions.logoutUser());
+      } else if (type === 'fav') {
+        window.location.reload();
       }
     } catch (error) {
       if (type === 'UI') {
@@ -21,7 +23,7 @@ const fetchingDelete = ({
       }
     }
   };
-  requestingCard();
+  fetchDelete();
 };
 
 export default fetchingDelete;

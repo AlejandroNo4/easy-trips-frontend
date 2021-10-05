@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import fetchingPatch from '../api/fetchingPatch';
 import fetchingDelete from '../api/fetchingDelete';
 import FormUpdateUser from './FormUpdateUser';
@@ -10,7 +10,7 @@ import GoHomeBtn from './GoHomeBtn';
 const UpdateAccount = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = 'logged_in';
@@ -20,7 +20,7 @@ const UpdateAccount = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === false) history.push('/');
+    if (userState.user.logged_in === false) navigate('/');
   }, []);
 
   const initialStateForm = {
@@ -62,7 +62,7 @@ const UpdateAccount = () => {
       dispatch,
       url,
       formData,
-      history,
+      navigate,
       type,
     });
   };

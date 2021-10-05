@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import fetchingGet from '../api/fetchingGet';
 import TripPreview from './TripPreview';
+import { cleanupTrip } from '../actions';
 
 const TripList = () => {
   const tripsState = useSelector((state) => state.tripsReducer);
@@ -15,6 +16,9 @@ const TripList = () => {
       url,
       type,
     });
+    return () => {
+      dispatch(cleanupTrip());
+    };
   }, []);
 
   const allTrips = tripsState.all_trips_data;

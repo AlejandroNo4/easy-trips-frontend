@@ -20,8 +20,8 @@ const logoutUser = () => ({
   type: 'LOGOUT_USER',
 });
 
-const userDeleted = () => ({
-  type: 'USER_DELETED',
+const favDeleted = () => ({
+  type: 'FAV_DELETED',
 });
 
 const userErrors = (errors) => ({
@@ -70,12 +70,16 @@ const tripDeleted = (errors) => ({
   },
 });
 
+const cleanupTrip = () => ({
+  type: 'CLEAN_TRIP',
+});
+
 export {
   loadingUser,
   loginUser,
   userUpdated,
   logoutUser,
-  userDeleted,
+  favDeleted,
   userErrors,
   loadingTrip,
   tripSuccess,
@@ -83,4 +87,5 @@ export {
   tripUpdated,
   tripErrors,
   tripDeleted,
+  cleanupTrip,
 };

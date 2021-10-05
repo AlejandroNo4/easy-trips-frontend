@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import fetchingPost from '../api/fetchingPost';
 import FormTrip from './FormTrip';
 import fetchingGet from '../api/fetchingGet';
@@ -9,7 +9,7 @@ const CreateTrip = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
   const tripState = useSelector((state) => state.tripsReducer);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = 'logged_in';
@@ -19,7 +19,7 @@ const CreateTrip = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === true && userState.user.admin === false) history.push('/');
+    if (userState.user.logged_in === true && userState.user.admin === false) navigate('/');
   }, []);
 
   const initialStateForm = {
@@ -67,7 +67,7 @@ const CreateTrip = () => {
       dispatch,
       url,
       formData,
-      history,
+      navigate,
       type,
     });
   };
