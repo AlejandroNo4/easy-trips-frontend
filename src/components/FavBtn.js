@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import { useNavigate } from 'react-router';
@@ -41,12 +42,12 @@ function FavBtn({ id }) {
     return (
       <div>
         {isFav === true && (
-          <button type="button" className="add-favorite-btn bold-white" onClick={removeFav}>
+          <button type="button" className="fav-btn bold-text white" onClick={removeFav}>
             Remove from favorites
           </button>
         )}
         {isFav === false && (
-          <button type="button" className="add-favorite-btn bold-white" onClick={addFav}>
+          <button type="button" className="fav-btn bold-text white" onClick={addFav}>
             Add to favorites
           </button>
         )}

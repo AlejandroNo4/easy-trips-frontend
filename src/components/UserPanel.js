@@ -1,3 +1,4 @@
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router';
 import PropTypes from 'prop-types';
@@ -34,47 +35,50 @@ const UserPanel = ({ display }) => {
   const { username, email } = user;
 
   return (
-    <div className={`user-panel flex-column ${display}`}>
-      <div className="user-info-container d-flex flex-column">
-        <img src={user.user_thumnail} alt={username} className="thumnail" />
+    <div className={`user-panel ${display}`}>
+      <div className="user-info">
+        <img src={user.user_thumnail} alt={username} className="thumnail bm-10" />
         <div>
-          <p className="username">{username}</p>
-          <p className="small-gray-text">{email}</p>
+          <p className="bm-10 bold-text">{username}</p>
+          <p className="bm-10 light-text">{email}</p>
         </div>
       </div>
-      <div className="buttons-container d-flex flex-column justify-between">
+      <div>
         <div>
           <button
+            className="btn-user-panel"
             onClick={favHandler}
             type="button"
-            className="user-info-btn"
           >
             Show favorites
           </button>
           <button
+            className="btn-user-panel"
             onClick={updateHandler}
             type="button"
-            className="user-info-btn"
           >
             Update Account
           </button>
           {userState.user.admin === true && (
             <button
+              className="btn-user-panel"
               onClick={createHandler}
               type="button"
-              className="user-info-btn"
             >
               Create New Trip
             </button>
           )}
         </div>
-        <button
-          onClick={logoutHandler}
-          type="button"
-          className="user-info-btn logout-btn"
-        >
-          Logout
-        </button>
+        <div className="user-bottom-section">
+          <div className="user-line" />
+          <button
+            className="btn-user-panel"
+            onClick={logoutHandler}
+            type="button"
+          >
+            Logout
+          </button>
+        </div>
       </div>
     </div>
   );

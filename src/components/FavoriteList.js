@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import TripPreview from './TripPreview';
 import { cleanupTrip } from '../actions';
@@ -21,7 +21,7 @@ function FavoriteList() {
   }
 
   return (
-    <ul className="all-cards-container d-flex justify-center align-center">
+    <ul className="trips-list d-flex align-center h-100">
       {favTrips.map((trip) => (
         <TripPreview trip={trip} key={trip.id} />
       ))}

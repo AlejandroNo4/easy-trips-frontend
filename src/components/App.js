@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Outlet } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import fetchingGet from '../api/fetchingGet';
 import UserPanel from './UserPanel';
+import NoSession from './NoSession';
 
 function App() {
   const userState = useSelector((state) => state.UIReducer);
@@ -36,7 +37,7 @@ function App() {
 
   const toggleUserPanel = () => {
     if (showPanel === 'd-none') {
-      updatePanel('d-flex');
+      updatePanel('d-block');
     } else {
       updatePanel('d-none');
     }
@@ -47,12 +48,12 @@ function App() {
   }
   if (userState.user.logged_in === true && userState.loading === false) {
     return (
-      <div className="d-flex">
+      <div className="trips-user-container d-flex">
         <UserPanel display={showPanel} />
         <div>
-          <div className="nav-bar-mobile d-flex space-between">
+          <div className="nav-bar d-flex space-between">
             <FontAwesomeIcon icon={faBars} onClick={toggleUserPanel} />
-            <h1 className="main-title">Easy Trips</h1>
+            <h1>Easy Trips</h1>
             <FontAwesomeIcon icon={faHome} onClick={homeHandler} />
           </div>
         </div>
@@ -61,16 +62,7 @@ function App() {
     );
   }
   return (
-    <div className="app">
-      <h1>Connected!</h1>
-      <h2>Status: NOT logged in</h2>
-      <button onClick={loginHandler} type="button">
-        ---Login---
-      </button>
-      <button onClick={signUpHandler} type="button">
-        ---Sign Up---
-      </button>
-    </div>
+    <NoSession loginHandler={loginHandler} signUpHandler={signUpHandler} />
   );
 }
 
