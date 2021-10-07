@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useParams } from 'react-router';
 import fetchingPost from '../api/fetchingPost';
-import FormTrip from './FormTrip';
+import FormTrip from '../components/FormTrip';
 import fetchingGet from '../api/fetchingGet';
 import fetchingDelete from '../api/fetchingDelete';
 import fetchingPatch from '../api/fetchingPatch';
@@ -92,17 +92,31 @@ const TripManagement = () => {
     navigate('/');
   };
 
+  const title = tripId === undefined ? 'Create Trip' : 'Update Trip';
+
   if (tripState.loading === true) {
-    return <h1>------CREATING TRIP...------</h1>;
+    return (
+      <div className="d-flex flex-column justify-center align-center">
+        <h1 className="session-title">Loading trip...</h1>
+      </div>
+    );
   }
   return (
-    <div>
-      <FormTrip handleChange={handleChange} handleSubmit={handleSubmit} />
+    <div className="trip-management d-flex flex-column">
+      <h1 className="session-title">{title}</h1>
+      <FormTrip
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        imgSelected={form.image}
+      />
       {tripId !== undefined && (
-        <button type="button" className="user-info-btn" onClick={handleDelete}>
-          Delete Trip
+        <button type="button" className="delete-trip-btn" onClick={handleDelete}>
+          Delete
         </button>
       )}
+      <Link to="/" className="link-back-create-trip">
+        Go back
+      </Link>
     </div>
   );
 };

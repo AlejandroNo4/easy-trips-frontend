@@ -74,6 +74,10 @@ const cleanupTrip = () => ({
   type: 'CLEAN_TRIP',
 });
 
+const cleanupErrors = () => ({
+  type: 'CLEAN_ERRORS',
+});
+
 export {
   loadingUser,
   loginUser,
@@ -88,4 +92,5 @@ export {
   tripErrors,
   tripDeleted,
   cleanupTrip,
+  cleanupErrors,
 };

@@ -4,8 +4,8 @@ import { useNavigate, Outlet } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faHome } from '@fortawesome/free-solid-svg-icons';
 import fetchingGet from '../api/fetchingGet';
-import UserPanel from './UserPanel';
-import NoSession from './NoSession';
+import UserPanel from '../components/UserPanel';
+import NoSession from '../components/NoSession';
 
 function App() {
   const userState = useSelector((state) => state.UIReducer);

@@ -1,10 +1,10 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import CreateAccount from './CreateAccount';
-import Login from './Login';
-import TripManagement from './TripManagement';
-import UpdateAccount from './UpdateAccount';
-import App from './App';
+import CreateAccount from '../containers/CreateAccount';
+import Login from '../containers/Login';
+import TripManagement from '../containers/TripManagement';
+import UpdateAccount from '../containers/UpdateAccount';
+import App from '../containers/App';
 import TripList from './TripList';
 import NotFound from './NotFound';
 import Trip from './Trip';

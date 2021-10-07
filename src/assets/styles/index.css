@@ -1,22 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&family=Roboto:wght@100;400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&family=Roboto:wght@100;400;700&display=swap");
 
 * {
   margin: 0;
   padding: 0;
   font-size: 100%;
-  font-family: 'Poppins', sans-serif;
+  font-family: "Poppins", sans-serif;
   list-style: none;
   text-decoration: none;
   border: none;
-  --roboto: 'Roboto', sans-serif;
+
+  --roboto: "Roboto", sans-serif;
   --orange: #f3451a;
   --gray: #868b8e;
   --bg-gray: #f6f4f9;
-  --light-gray: #E1E2E7;
+  --light-gray: #e1e2e7;
   --blue: #00b7d9;
-}
-
-#root {
 }
 
 .border {
@@ -100,9 +98,6 @@
   min-width: 300px;
 }
 
-.right-main {
-}
-
 .trips-list {
   display: flex;
   justify-content: flex-start;
@@ -110,13 +105,14 @@
   overflow-y: hidden;
   flex-wrap: nowrap;
   height: 100vh;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
 }
-
-/*++++++++++++++++++++++++++++++++ USER PANEL */
 
 .thumnail {
   border-radius: 50%;
@@ -132,7 +128,6 @@
 .user-panel {
   min-width: 200px;
   position: relative;
-
 }
 
 .user-info {
@@ -158,8 +153,6 @@
   width: 100%;
 }
 
-/*+++++++++++++++++++++++++++++ CARD-CONTAINER */
-
 .card-container {
   margin-left: calc((100vw - 300px) / 2);
   margin-right: calc((100vw - 300px) / 2);
@@ -182,8 +175,6 @@
   padding: 15px;
 }
 
-/*+++++++++++++++++++++++++++++ NAV-BAR */
-
 .nav-bar {
   box-sizing: border-box;
   position: fixed;
@@ -193,15 +184,16 @@
   background: var(--bg-gray);
 }
 
-/*+++++++++++++++++++++++++++++ TRIP CONTAINER */
-
 .trip-container {
   margin-top: 38px;
   overflow-x: auto;
   height: 100vh;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
 }
 
@@ -244,8 +236,6 @@
   padding: 10px 0;
 }
 
-/*+++++++++++++++++++++++++++++ NO SESSION */
-
 .no-session-container {
   height: 100vh;
 }
@@ -273,26 +263,23 @@
   padding: 5px 15px;
   border-radius: 50px;
   width: 100px;
-  box-shadow: 0 5px 15px rgba(243, 69, 26, .4);
+  box-shadow: 0 5px 15px rgba(243, 69, 26, 0.4);
 }
 
 .bg-no-session {
+  position: relative;
   min-width: 100%;
   min-height: 100vh;
-  background: url(https://cdn.pixabay.com/photo/2018/03/12/20/07/maldives-3220702_960_720.jpg) no-repeat center center fixed;
+  height: 100%;
+  background:
+    linear-gradient(
+      rgba(255, 255, 255, 0.6),
+      rgba(255, 255, 255, 0.6)
+    ),
+    url(https://cdn.pixabay.com/photo/2018/03/12/20/07/maldives-3220702_960_720.jpg)
+      no-repeat center center fixed;
   background-size: cover;
-  position: fixed;
-}
-
-.bg-opacity {
-  background-color: white;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  opacity: 0.7;
-  z-index: -1;
+  overflow: auto;
 }
 
 .form-input {
@@ -308,28 +295,28 @@
 
 .input-file {
   width: 0.1px;
-	height: 0.1px;
-	opacity: 0;
-	overflow: hidden;
-	position: absolute;
-	z-index: -1;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1;
 }
 
 .form-input:focus,
-.input-file:focus + .form-input{
-  outline: none !important;
+.input-file:focus + .form-input {
+  outline: none;
   border: 1px solid var(--orange);
-  box-shadow: 0 0 10px rgba(243, 69, 26, .4);
+  box-shadow: 0 0 10px rgba(243, 69, 26, 0.4);
   color: var(--orange);
 }
 
 .link-back {
-  position: absolute;
   color: var(--orange);
   font-size: 14px;
-  bottom: 15px;
-  margin-top: 15px;
+  margin-bottom: 15px;
+  margin-top: 25px;
 }
+
 .delete-account-btn {
   background: transparent;
   position: absolute;
@@ -344,8 +331,130 @@
   overflow-y: hidden;
   flex-wrap: nowrap;
   height: 100vh;
-  box-shadow: 0 2.8px 2.2px rgba(0, 0, 0, 0.034),
-    0 6.7px 5.3px rgba(0, 0, 0, 0.048), 0 12.5px 10px rgba(0, 0, 0, 0.06),
-    0 22.3px 17.9px rgba(0, 0, 0, 0.072), 0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+  box-shadow:
+    0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+    0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+    0 12.5px 10px rgba(0, 0, 0, 0.06),
+    0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+    0 41.8px 33.4px rgba(0, 0, 0, 0.086),
     0 100px 80px rgba(0, 0, 0, 0.12);
+}
+
+.trip-management {
+  margin-left: calc((100vw - 300px) / 2);
+  margin-right: calc((100vw - 300px) / 2);
+  overflow-x: hidden;
+}
+
+.trip-input {
+  border: 1px solid var(--light-gray);
+  border-radius: 3px;
+  max-width: 280px;
+  max-height: 100px;
+}
+
+.link-back-create-trip {
+  position: absolute;
+  color: var(--orange);
+  font-size: 14px;
+  bottom: 15px;
+  right: 15px;
+  margin-top: 15px;
+}
+
+.delete-trip-btn {
+  margin: 35px auto;
+  background: white;
+  border: 2px solid red;
+  padding: 5px;
+  color: red;
+  max-width: 75px;
+  justify-self: center;
+}
+
+.error-msg {
+  color: var(--orange);
+  max-width: 300px;
+  font-size: 12px;
+}
+
+@media (min-width: 768px) {
+  .trip-slider {
+    display: flex;
+    flex-direction: row;
+    max-width: 50%;
+    margin: 0 auto 50px auto;
+    box-shadow:
+      0 2.8px 2.2px rgba(0, 0, 0, 0.034),
+      0 6.7px 5.3px rgba(0, 0, 0, 0.048),
+      0 12.5px 10px rgba(0, 0, 0, 0.06),
+      0 22.3px 17.9px rgba(0, 0, 0, 0.072),
+      0 41.8px 33.4px rgba(0, 0, 0, 0.086),
+      0 100px 80px rgba(0, 0, 0, 0.12);
+  }
+
+  .destination {
+    font-size: 2em;
+  }
+
+  .info-trip-container {
+    max-width: 50%;
+    margin: 0 auto;
+  }
+
+  .image-trip {
+    max-height: 600px;
+    width: 50%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .fav-btn {
+    max-width: 50%;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .card-container {
+    margin-left: 15px;
+    margin-right: 15px;
+    box-shadow: 0 3px 10px rgb(0 0 0 / 0.2);
+  }
+
+  .nav-bar {
+    font-size: 2em;
+  }
+
+  .user-panel {
+    width: 25%;
+  }
+
+  .session-btn:hover {
+    cursor: pointer;
+  }
+
+  .trip-input {
+    min-width: 500px;
+  }
+
+  .trip-management {
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    overflow: auto;
+    width: 100%;
+  }
+
+  .delete-trip-btn {
+    position: absolute;
+    bottom: 25px;
+    right: 25px;
+  }
+
+  .link-back-create-trip {
+    position: relative;
+    margin: 45px auto;
+    border: 2px solid var(--orange);
+    padding: 5px 10px;
+  }
 }

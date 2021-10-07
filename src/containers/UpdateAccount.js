@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
-import fetchingPost from '../api/fetchingPost';
-import FormSignUp from './FormSignUp';
+import fetchingPatch from '../api/fetchingPatch';
+import fetchingDelete from '../api/fetchingDelete';
+import FormUpdateUser from '../components/FormUpdateUser';
 import fetchingGet from '../api/fetchingGet';
 
-const CreateAccount = () => {
+const UpdateAccount = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
   const navigate = useNavigate();
@@ -18,14 +19,12 @@ const CreateAccount = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === true) navigate('/');
+    if (userState.user.logged_in === false) navigate('/');
   }, []);
 
   const initialStateForm = {
     username: '',
     email: '',
-    password: '',
-    passwordConfirmation: '',
     image: {},
   };
   const [form, updateInput] = useState(initialStateForm);
@@ -35,24 +34,31 @@ const CreateAccount = () => {
     else updateInput({ ...form, [e.target.name]: e.target.value });
   };
 
+  const handleDelete = () => {
+    const url = `/users/${userState.user.id}`;
+    const type = 'UI';
+    fetchingDelete({
+      dispatch,
+      url,
+      type,
+    });
+    navigate('/');
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    const {
-      username, email, password, passwordConfirmation, image,
-    } = form;
+    const { username, email, image } = form;
 
     const formData = {
       user: {
         username,
-        email: email.toLowerCase(),
-        password,
-        password_confirmation: passwordConfirmation,
+        email,
         image,
       },
     };
-    const url = '/users';
+    const url = `/users/${userState.user.id}`;
     const type = 'UI';
-    fetchingPost({
+    fetchingPatch({
       dispatch,
       url,
       formData,
@@ -70,16 +76,20 @@ const CreateAccount = () => {
   }
   return (
     <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
-      <h1 className="session-title">Sign up</h1>
+      <h1 className="session-title">Update account</h1>
       <p className="session-description text-center">
-        Please, create an account.
+        Please, fll out this form.
       </p>
-      <FormSignUp
+      <FormUpdateUser
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         imgSelected={form.image}
       />
-      <div className="bg-opacity" />
+      {userState.user.admin === false && (
+        <button type="button" onClick={handleDelete} className="delete-account-btn">
+          Delete account
+        </button>
+      )}
       <Link to="/" className="link-back">
         Go back
       </Link>
@@ -87,4 +97,4 @@ const CreateAccount = () => {
   );
 };
 
-export default CreateAccount;
+export default UpdateAccount;

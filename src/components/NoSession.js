@@ -14,7 +14,6 @@ const NoSession = ({ loginHandler, signUpHandler }) => (
         Sign Up
       </button>
     </div>
-    <div className="bg-opacity" />
   </div>
 );
 

@@ -26,10 +26,11 @@ const fetchingPost = ({
         window.location.reload();
       }
     } catch (error) {
+      const errMsg = error.response.data;
       if (type === 'UI') {
-        dispatch(actions.userErrors(error));
+        dispatch(actions.userErrors(errMsg));
       } else if (type === 'trip') {
-        dispatch(actions.tripErrors(error));
+        dispatch(actions.tripErrors(errMsg));
       }
     }
   };

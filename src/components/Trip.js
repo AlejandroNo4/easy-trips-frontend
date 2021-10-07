@@ -54,7 +54,7 @@ const Trip = () => {
   return (
     <div className="trip-container">
       <div className="trip-sub-container">
-        <div className="relative">
+        <div className="relative trip-slider">
           <Carousel
             showThumbs={false}
             showIndicators={false}
@@ -87,7 +87,7 @@ const Trip = () => {
           </div>
         </div>
         <div className="info-trip-container">
-          <p className="bold-text bm-10 text-center">{trip.destination}</p>
+          <p className="bold-text bm-10 destination text-center">{trip.destination}</p>
           <p className="bold-text">Hotel:</p>
           <p className="bm-10">{trip.hotel}</p>
           <p className="bold-text">Days:</p>

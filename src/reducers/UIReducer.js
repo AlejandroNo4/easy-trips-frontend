@@ -36,6 +36,11 @@ const UIReducer = (state = initialState, action) => {
         loading: false,
         errors: action.payload.errors,
       };
+    case 'CLEAN_ERRORS':
+      return {
+        ...state,
+        errors: [],
+      };
     default:
       return state;
   }

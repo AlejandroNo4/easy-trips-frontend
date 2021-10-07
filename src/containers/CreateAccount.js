@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
-import fetchingPatch from '../api/fetchingPatch';
-import fetchingDelete from '../api/fetchingDelete';
-import FormUpdateUser from './FormUpdateUser';
+import fetchingPost from '../api/fetchingPost';
+import FormSignUp from '../components/FormSignUp';
 import fetchingGet from '../api/fetchingGet';
+import { cleanupErrors } from '../actions';
 
-const UpdateAccount = () => {
+const CreateAccount = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
   const navigate = useNavigate();
@@ -19,12 +19,17 @@ const UpdateAccount = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === false) navigate('/');
+    if (userState.user.logged_in === true) navigate('/');
+    return () => {
+      dispatch(cleanupErrors());
+    };
   }, []);
 
   const initialStateForm = {
     username: '',
     email: '',
+    password: '',
+    passwordConfirmation: '',
     image: {},
   };
   const [form, updateInput] = useState(initialStateForm);
@@ -34,31 +39,24 @@ const UpdateAccount = () => {
     else updateInput({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleDelete = () => {
-    const url = `/users/${userState.user.id}`;
-    const type = 'UI';
-    fetchingDelete({
-      dispatch,
-      url,
-      type,
-    });
-    navigate('/');
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { username, email, image } = form;
+    const {
+      username, email, password, passwordConfirmation, image,
+    } = form;
 
     const formData = {
       user: {
         username,
-        email,
+        email: email.toLowerCase(),
+        password,
+        password_confirmation: passwordConfirmation,
         image,
       },
     };
-    const url = `/users/${userState.user.id}`;
+    const url = '/users';
     const type = 'UI';
-    fetchingPatch({
+    fetchingPost({
       dispatch,
       url,
       formData,
@@ -74,28 +72,30 @@ const UpdateAccount = () => {
       </div>
     );
   }
+
+  let errors;
+  if (userState.loading === false) {
+    const keys = Object.keys(userState.errors);
+    errors = keys.map((key) => `${key}: ${userState.errors[key]}`).join('\n');
+  }
+
   return (
     <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
-      <h1 className="session-title">Update account</h1>
+      <p className="error-msg">{errors}</p>
+      <h1 className="session-title">Sign up</h1>
       <p className="session-description text-center">
-        Please, fll out this form.
+        Please, create an account.
       </p>
-      <FormUpdateUser
+      <FormSignUp
         handleChange={handleChange}
         handleSubmit={handleSubmit}
         imgSelected={form.image}
       />
-      {userState.user.admin === false && (
-        <button type="button" onClick={handleDelete} className="delete-account-btn">
-          Delete account
-        </button>
-      )}
       <Link to="/" className="link-back">
         Go back
       </Link>
-      <div className="bg-opacity" />
     </div>
   );
 };
 
-export default UpdateAccount;
+export default CreateAccount;
