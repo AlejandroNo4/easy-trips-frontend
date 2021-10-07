@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import fetchingPost from '../api/fetchingPost';
-import FormSignUp from './FormSignUp';
+import FormSignUp from '../components/FormSignUp';
 import fetchingGet from '../api/fetchingGet';
+import { cleanupErrors } from '../actions';
 
 const CreateAccount = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = 'logged_in';
@@ -18,7 +19,10 @@ const CreateAccount = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === true) history.push('/');
+    if (userState.user.logged_in === true) navigate('/');
+    return () => {
+      dispatch(cleanupErrors());
+    };
   }, []);
 
   const initialStateForm = {
@@ -26,7 +30,7 @@ const CreateAccount = () => {
     email: '',
     password: '',
     passwordConfirmation: '',
-    image: [],
+    image: {},
   };
   const [form, updateInput] = useState(initialStateForm);
 
@@ -44,7 +48,7 @@ const CreateAccount = () => {
     const formData = {
       user: {
         username,
-        email,
+        email: email.toLowerCase(),
         password,
         password_confirmation: passwordConfirmation,
         image,
@@ -56,17 +60,40 @@ const CreateAccount = () => {
       dispatch,
       url,
       formData,
-      history,
+      navigate,
       type,
     });
   };
 
   if (userState.loading === true) {
-    return <h1>------LOADING...------</h1>;
+    return (
+      <div className="d-flex flex-column justify-center align-center w-100">
+        <h1 className="session-title">Loading...</h1>
+      </div>
+    );
   }
+
+  let errors;
+  if (userState.loading === false) {
+    const keys = Object.keys(userState.errors);
+    errors = keys.map((key) => `${key}: ${userState.errors[key]}`).join('\n');
+  }
+
   return (
-    <div>
-      <FormSignUp handleChange={handleChange} handleSubmit={handleSubmit} />
+    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
+      <p className="error-msg">{errors}</p>
+      <h1 className="session-title">Sign up</h1>
+      <p className="session-description text-center">
+        Please, create an account.
+      </p>
+      <FormSignUp
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        imgSelected={form.image}
+      />
+      <Link to="/" className="link-back">
+        Go back
+      </Link>
     </div>
   );
 };

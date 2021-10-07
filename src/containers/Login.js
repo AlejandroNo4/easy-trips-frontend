@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import fetchingPost from '../api/fetchingPost';
-import FormLogin from './FormLogin';
+import FormLogin from '../components/FormLogin';
 import fetchingGet from '../api/fetchingGet';
+import { cleanupErrors } from '../actions';
 
 const Login = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = 'logged_in';
@@ -18,7 +19,10 @@ const Login = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === true) history.push('/');
+    if (userState.user.logged_in === true) navigate('/');
+    return () => {
+      dispatch(cleanupErrors());
+    };
   }, []);
 
   const initialStateForm = {
@@ -34,13 +38,11 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const {
-      email, password,
-    } = form;
+    const { email, password } = form;
 
     const formData = {
       user: {
-        email,
+        email: email.toLowerCase(),
         password,
       },
     };
@@ -50,17 +52,35 @@ const Login = () => {
       dispatch,
       url,
       formData,
-      history,
+      navigate,
       type,
     });
   };
 
   if (userState.loading === true) {
-    return <h1>------LOADING...------</h1>;
+    return (
+      <div className="d-flex flex-column justify-center align-center w-100">
+        <h1 className="session-title">Loading...</h1>
+      </div>
+    );
+  }
+
+  let errors;
+
+  if (userState.loading === false) {
+    errors = userState.errors.message;
   }
   return (
-    <div>
+    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
+      <p className="error-msg">{errors}</p>
+      <h1 className="session-title">Login</h1>
+      <p className="session-description text-center">
+        Hello there! please Login and start looking for the perfect trip.
+      </p>
       <FormLogin handleChange={handleChange} handleSubmit={handleSubmit} />
+      <Link to="/" className="link-back">
+        Go back
+      </Link>
     </div>
   );
 };

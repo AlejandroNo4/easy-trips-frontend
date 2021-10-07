@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import fetchingPatch from '../api/fetchingPatch';
 import fetchingDelete from '../api/fetchingDelete';
-import FormUpdateUser from './FormUpdateUser';
+import FormUpdateUser from '../components/FormUpdateUser';
 import fetchingGet from '../api/fetchingGet';
-import GoHomeBtn from './GoHomeBtn';
 
 const UpdateAccount = () => {
   const dispatch = useDispatch();
   const userState = useSelector((state) => state.UIReducer);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const url = 'logged_in';
@@ -20,13 +19,13 @@ const UpdateAccount = () => {
       url,
       type,
     });
-    if (userState.user.logged_in === false) history.push('/');
+    if (userState.user.logged_in === false) navigate('/');
   }, []);
 
   const initialStateForm = {
     username: '',
     email: '',
-    image: [],
+    image: {},
   };
   const [form, updateInput] = useState(initialStateForm);
 
@@ -43,6 +42,7 @@ const UpdateAccount = () => {
       url,
       type,
     });
+    navigate('/');
   };
 
   const handleSubmit = (e) => {
@@ -62,23 +62,37 @@ const UpdateAccount = () => {
       dispatch,
       url,
       formData,
-      history,
+      navigate,
       type,
     });
   };
 
   if (userState.loading === true) {
-    return <h1>------LOADING...------</h1>;
+    return (
+      <div className="d-flex flex-column justify-center align-center w-100">
+        <h1 className="session-title">Loading...</h1>
+      </div>
+    );
   }
   return (
-    <div>
-      <FormUpdateUser handleChange={handleChange} handleSubmit={handleSubmit} />
-      <GoHomeBtn />
+    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
+      <h1 className="session-title">Update account</h1>
+      <p className="session-description text-center">
+        Please, fll out this form.
+      </p>
+      <FormUpdateUser
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        imgSelected={form.image}
+      />
       {userState.user.admin === false && (
-        <button type="button" onClick={handleDelete}>
+        <button type="button" onClick={handleDelete} className="delete-account-btn">
           Delete account
         </button>
       )}
+      <Link to="/" className="link-back">
+        Go back
+      </Link>
     </div>
   );
 };

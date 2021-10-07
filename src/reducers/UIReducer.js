@@ -27,13 +27,19 @@ const UIReducer = (state = initialState, action) => {
         message: action.payload.msg,
       };
     case 'LOGOUT_USER':
-    case 'USER_DELETED':
       return { ...initialState, loading: false };
+    case 'FAV_DELETED':
+      return { ...state, loading: false };
     case 'USER_ERRORS':
       return {
         ...state,
         loading: false,
         errors: action.payload.errors,
+      };
+    case 'CLEAN_ERRORS':
+      return {
+        ...state,
+        errors: [],
       };
     default:
       return state;

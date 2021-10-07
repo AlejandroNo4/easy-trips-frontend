@@ -1,7 +1,8 @@
+import React from 'react';
 import PropTypes from 'prop-types';
 
 const FormLogin = ({ handleChange, handleSubmit }) => (
-  <form onSubmit={handleSubmit}>
+  <form onSubmit={handleSubmit} className="d-flex flex-column align-center">
     <input
       required
       type="email"
@@ -9,6 +10,7 @@ const FormLogin = ({ handleChange, handleSubmit }) => (
       name="email"
       placeholder="Email Adress"
       onChange={handleChange}
+      className="form-input"
     />
     <input
       required
@@ -17,8 +19,9 @@ const FormLogin = ({ handleChange, handleSubmit }) => (
       name="password"
       placeholder="password"
       onChange={handleChange}
+      className="form-input"
     />
-    <button type="submit">Log In</button>
+    <button type="submit" className="session-btn white">Log In</button>
   </form>
 );
 
