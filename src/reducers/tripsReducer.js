@@ -18,7 +18,7 @@ const tripsReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        trip: action.payload.trip,
+        trip_data: action.payload.trip,
       };
     case 'ALL_TRIPS_SUCCESS':
       return {
