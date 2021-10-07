@@ -44,7 +44,11 @@ function App() {
   };
 
   if (userState.loading === true) {
-    return <h1>------LOADING USER...------</h1>;
+    return (
+      <div className="d-flex flex-column justify-center align-center w-100 h-100">
+        <h1 className="session-title">Loading...</h1>
+      </div>
+    );
   }
   if (userState.user.logged_in === true && userState.loading === false) {
     return (

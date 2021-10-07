@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import fetchingPost from '../api/fetchingPost';
 import FormSignUp from './FormSignUp';
 import fetchingGet from '../api/fetchingGet';
@@ -26,7 +26,7 @@ const CreateAccount = () => {
     email: '',
     password: '',
     passwordConfirmation: '',
-    image: [],
+    image: {},
   };
   const [form, updateInput] = useState(initialStateForm);
 
@@ -62,11 +62,27 @@ const CreateAccount = () => {
   };
 
   if (userState.loading === true) {
-    return <h1>------LOADING...------</h1>;
+    return (
+      <div className="d-flex flex-column justify-center align-center w-100">
+        <h1 className="session-title">Loading...</h1>
+      </div>
+    );
   }
   return (
-    <div>
-      <FormSignUp handleChange={handleChange} handleSubmit={handleSubmit} />
+    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
+      <h1 className="session-title">Sign up</h1>
+      <p className="session-description text-center">
+        Please, create an account.
+      </p>
+      <FormSignUp
+        handleChange={handleChange}
+        handleSubmit={handleSubmit}
+        imgSelected={form.image}
+      />
+      <div className="bg-opacity" />
+      <Link to="/" className="link-back">
+        Go back
+      </Link>
     </div>
   );
 };

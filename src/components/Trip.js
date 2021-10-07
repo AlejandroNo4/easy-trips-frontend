@@ -36,7 +36,11 @@ const Trip = () => {
   };
 
   if (tripsState.loading === true || trip.trip_images === undefined) {
-    return <h1>✈️🚌🛳----LOADING TRIPS</h1>;
+    return (
+      <div className="d-flex flex-column justify-center align-center w-100">
+        <h1 className="session-title">Loading...</h1>
+      </div>
+    );
   }
 
   const images = trip.trip_images.map((i) => (

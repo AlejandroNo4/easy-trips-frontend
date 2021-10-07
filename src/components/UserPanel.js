@@ -34,10 +34,18 @@ const UserPanel = ({ display }) => {
   const { user } = userState;
   const { username, email } = user;
 
+  const noImg = 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png';
+
+  let imgSrc;
+
+  if (user.user_thumnail !== undefined) {
+    imgSrc = user.user_thumnail[0] === '' ? noImg : user.user_thumnail;
+  }
+
   return (
     <div className={`user-panel ${display}`}>
       <div className="user-info">
-        <img src={user.user_thumnail} alt={username} className="thumnail bm-10" />
+        <img src={imgSrc} alt={username} className="thumnail bm-10" />
         <div>
           <p className="bm-10 bold-text">{username}</p>
           <p className="bm-10 light-text">{email}</p>

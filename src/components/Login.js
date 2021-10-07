@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import fetchingPost from '../api/fetchingPost';
 import FormLogin from './FormLogin';
 import fetchingGet from '../api/fetchingGet';
@@ -56,11 +56,19 @@ const Login = () => {
   };
 
   if (userState.loading === true) {
-    return <h1>------LOADING...------</h1>;
+    return (
+      <div className="d-flex flex-column justify-center align-center w-100">
+        <h1 className="session-title">Loading...</h1>
+      </div>
+    );
   }
   return (
-    <div>
+    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
+      <h1 className="session-title">Login</h1>
+      <p className="session-description text-center">Hello there! please Login and start looking for the perfect trip.</p>
       <FormLogin handleChange={handleChange} handleSubmit={handleSubmit} />
+      <div className="bg-opacity" />
+      <Link to="/" className="link-back">Go back</Link>
     </div>
   );
 };

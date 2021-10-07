@@ -12,12 +12,20 @@ function FavoriteList() {
   }, []);
 
   if (userState.loading === true || userState.user.trips === undefined) {
-    return <h1>✈️🚌🛳----LOADING TRIPS</h1>;
+    return (
+      <div className="d-flex flex-column justify-center align-center w-100">
+        <h1 className="session-title">Loading...</h1>
+      </div>
+    );
   }
 
   const favTrips = userState.user.trips;
   if (!favTrips.length) {
-    return <h1>No favorites</h1>;
+    return (
+      <div className="loading-container d-flex flex-column justify-center w-100">
+        <h1 className="session-title text-center mw-300">No favorites yet :(</h1>
+      </div>
+    );
   }
 
   return (

@@ -25,7 +25,9 @@ const TripList = () => {
 
   if (tripsState.loading === true) {
     return (
-      <h1>✈️🚌🛳----LOADING TRIPS</h1>
+      <div className="d-flex flex-column justify-center align-center w-100">
+        <h1 className="session-title">Loading...</h1>
+      </div>
     );
   }
 
