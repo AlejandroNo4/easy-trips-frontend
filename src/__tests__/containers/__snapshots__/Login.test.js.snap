@@ -1,10 +1,58 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Login Component matches the snapshot 1`] = `
-<h1
-  class="session-title"
-  data-testid="login-text"
+<div
+  class="bg-no-session d-flex justify-center flex-column align-center no-session-container"
+  data-testid="login-container"
 >
-  Login
-</h1>
+  <p
+    class="error-msg"
+    data-testid="errors-msg"
+  >
+    Cannot destructure property 'data' of 'request' as it is undefined.
+  </p>
+  <h1
+    class="session-title"
+  >
+    Login
+  </h1>
+  <p
+    class="session-description text-center"
+  >
+    Hello there! please Login and start looking for the perfect trip.
+  </p>
+  <form
+    class="d-flex flex-column align-center"
+  >
+    <input
+      class="form-input"
+      id="email"
+      name="email"
+      placeholder="Email Adress"
+      required=""
+      type="email"
+    />
+    <input
+      class="form-input"
+      id="password"
+      name="password"
+      placeholder="password"
+      required=""
+      type="password"
+    />
+    <button
+      class="session-btn white"
+      data-testid="login-btn"
+      type="submit"
+    >
+      Log In
+    </button>
+  </form>
+  <a
+    class="link-back"
+    href="/"
+  >
+    Go back
+  </a>
+</div>
 `;

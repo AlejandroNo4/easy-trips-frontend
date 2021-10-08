@@ -45,10 +45,10 @@ const UserPanel = ({ display }) => {
   return (
     <div className={`user-panel ${display}`}>
       <div className="user-info">
-        <img src={imgSrc} alt={username} className="thumnail bm-10" />
+        <img src={imgSrc} alt={username} className="thumnail bm-10" data-testid="user-thumnail" />
         <div>
-          <p className="bm-10 bold-text">{username}</p>
-          <p className="bm-10 light-text">{email}</p>
+          <p className="bm-10 bold-text" data-testid="username">{username}</p>
+          <p className="bm-10 light-text" data-testid="user-email">{email}</p>
         </div>
       </div>
       <div>
@@ -57,6 +57,7 @@ const UserPanel = ({ display }) => {
             className="btn-user-panel"
             onClick={favHandler}
             type="button"
+            data-testid="fav-btn"
           >
             Show favorites
           </button>
@@ -83,6 +84,7 @@ const UserPanel = ({ display }) => {
             className="btn-user-panel"
             onClick={logoutHandler}
             type="button"
+            data-testid="logout"
           >
             Logout
           </button>

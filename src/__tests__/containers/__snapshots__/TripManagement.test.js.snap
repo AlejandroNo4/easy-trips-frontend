@@ -1,10 +1,128 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`TripManagement Component matches the snapshot 1`] = `
-<h1
-  class="session-title"
-  data-testid="trip-manage-title"
+<div
+  class="trip-management d-flex flex-column"
+  data-testid="trip-manage"
 >
-  Create Trip
-</h1>
+  <h1
+    class="session-title"
+  >
+    Create Trip
+  </h1>
+  <form>
+    <input
+      class="trip-input bm-10"
+      id="destination"
+      name="destination"
+      placeholder="destination"
+      required=""
+      type="text"
+    />
+    <p>
+      Price per person: 
+    </p>
+    <input
+      class="trip-input bm-10"
+      data-testid="input-price"
+      id="price"
+      max="10000.00"
+      min="1.00"
+      name="price"
+      required=""
+      step="0.01"
+      type="number"
+    />
+    <p>
+      Description: 
+    </p>
+    <textarea
+      class="trip-input bm-10"
+      cols="50"
+      data-testid="input-description"
+      id="description"
+      maxlength="400"
+      name="description"
+      required=""
+      rows="10"
+    />
+    <p>
+      Days: 
+    </p>
+    <input
+      class="trip-input bm-10"
+      data-testid="input-days"
+      id="days"
+      max="10000"
+      min="1"
+      name="days"
+      required=""
+      step="1"
+      type="number"
+    />
+    <p>
+      Hotel: 
+    </p>
+    <input
+      class="trip-input"
+      id="hotel"
+      maxlength="50"
+      name="hotel"
+      placeholder="Hotel"
+      required=""
+      type="text"
+    />
+    <p>
+      Type: 
+    </p>
+    <select
+      class="bm-10"
+      data-testid="input-select"
+      id="tripType"
+      name="tripType"
+    >
+      <option
+        value="City"
+      >
+        City
+      </option>
+      <option
+        value="Beach"
+      >
+        Beach
+      </option>
+      <option
+        value="Ship"
+      >
+        Nature
+      </option>
+    </select>
+    <p>
+      Images: 
+    </p>
+    <input
+      accept="image/png, image/jpeg"
+      class="bm-10"
+      data-testid="input-images"
+      id="images"
+      multiple=""
+      name="images"
+      required=""
+      type="file"
+    />
+    <button
+      class="session-btn white"
+      data-testid="submit-trip"
+      type="submit"
+    >
+      Submit
+    </button>
+  </form>
+  <a
+    class="link-back-create-trip"
+    href="/"
+  >
+    Go back
+  </a>
+</div>
 `;

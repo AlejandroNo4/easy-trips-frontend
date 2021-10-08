@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import {
   render, screen, cleanup, fireEvent, act,
 } from '@testing-library/react';
-import userEvent from '@testing-library/user-event'
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import axiosMock from 'axios';
 import { BrowserRouter } from 'react-router-dom';
@@ -21,59 +21,67 @@ const renderWithRedux = (component) => ({
 });
 
 describe('CreateAccount Component', () => {
-  beforeEach(()=> {
+  beforeEach(() => {
     renderWithRedux(<CreateAccount />);
   });
 
   it('renders with Redux', async () => {
-    const signUpTitle = await screen.findByTestId('Sign-up-title');
+    const signUpTitle = await screen.findByTestId('sign-up-container');
     expect(signUpTitle).toBeVisible();
   });
 
   it('matches the snapshot', async () => {
-    const signUpTitle = await screen.findByTestId('Sign-up-title');
+    const signUpTitle = await screen.findByTestId('sign-up-container');
     expect(signUpTitle).toMatchSnapshot();
   });
 
   it('Renders username and tranfers the value while typing', async () => {
     const username = await screen.findByPlaceholderText('Username');
     expect(username).toBeVisible();
-    userEvent.type(username, 'Mario')
-    expect(username).toHaveValue('Mario')
-    expect(username).not.toHaveValue('')
+    userEvent.type(username, 'Mario');
+    expect(username).toHaveProperty('required', true);
+    expect(username).not.toHaveProperty('required', false);
+    expect(username).toHaveValue('Mario');
+    expect(username).not.toHaveValue('');
   });
 
   it('Renders email and tranfers the value while typing', async () => {
     const email = await screen.findByPlaceholderText('Email Adress');
     expect(email).toBeVisible();
-    userEvent.type(email, 'anemail@mail.com')
-    expect(email).toHaveValue('anemail@mail.com')
-    expect(email).not.toHaveValue('')
+    userEvent.type(email, 'anemail@mail.com');
+    expect(email).toHaveValue('anemail@mail.com');
+    expect(email).toHaveProperty('required', true);
+    expect(email).not.toHaveProperty('required', false);
+    expect(email).not.toHaveValue('');
   });
 
   it('Renders Password input', async () => {
     const password = await screen.findByPlaceholderText('password');
     expect(password).toBeVisible();
-    userEvent.type(password, '123456')
-    expect(password).toHaveValue('123456')
-    expect(password).not.toHaveValue('')
+    userEvent.type(password, '123456');
+    expect(password).toHaveValue('123456');
+    expect(password).toHaveProperty('required', true);
+    expect(password).not.toHaveProperty('required', false);
+    expect(password).not.toHaveValue('');
   });
 
   it('Renders Password Confirmation input', async () => {
     const passwordConfirmation = await screen.findByPlaceholderText('Password Confirmation');
     expect(passwordConfirmation).toBeVisible();
-    userEvent.type(passwordConfirmation, '123456')
-    expect(passwordConfirmation).toHaveValue('123456')
-    expect(passwordConfirmation).not.toHaveValue('')
+    userEvent.type(passwordConfirmation, '123456');
+    expect(passwordConfirmation).toHaveValue('123456');
+    expect(passwordConfirmation).toHaveProperty('required', true);
+    expect(passwordConfirmation).not.toHaveProperty('required', false);
+    expect(passwordConfirmation).not.toHaveValue('');
   });
 
   it('Renders File Form input', async () => {
-    const fileInput = await screen.findByTestId('Sign-up-title');
+    const fileInput = await screen.findByTestId('sign-up-container');
     expect(fileInput).toBeVisible();
   });
 
   it('Cannot render and cannot render data wothout input typed', async () => {
-    axiosMock.post.mockResolvedValueOnce({data: {}})
+    axiosMock.post.mockResolvedValueOnce({ data: {} });
     const username = await screen.findByPlaceholderText('Username');
     const passwordConfirmation = await screen.findByPlaceholderText('Password Confirmation');
     const password = await screen.findByPlaceholderText('password');
@@ -84,15 +92,15 @@ describe('CreateAccount Component', () => {
     expect(passwordConfirmation).toBeVisible();
     expect(email).toBeVisible();
     expect(button).toBeVisible();
-    await act( async () => {
+    await act(async () => {
       fireEvent.click(button);
     });
-    const message = await screen.findByTestId('sign-up-errs')
+    const message = await screen.findByTestId('sign-up-errs');
     expect(message).toBeVisible();
   });
 
   it('Makes a call to fetching action when filling the fields', async () => {
-    axiosMock.post.mockResolvedValueOnce({data: {logged_in: false}})
+    axiosMock.post.mockResolvedValueOnce({ data: { logged_in: false } });
     const username = await screen.findByPlaceholderText('Username');
     const passwordConfirmation = await screen.findByPlaceholderText('Password Confirmation');
     const password = await screen.findByPlaceholderText('password');
@@ -103,15 +111,14 @@ describe('CreateAccount Component', () => {
     expect(passwordConfirmation).toBeVisible();
     expect(email).toBeVisible();
     expect(button).toBeVisible();
-    userEvent.type(username, 'Mario')
-    userEvent.type(email, 'anemail@mail.com')
-    userEvent.type(password, '123456')
-    userEvent.type(passwordConfirmation, '123456')
-    await act( async () => {
+    userEvent.type(username, 'Mario');
+    userEvent.type(email, 'anemail@mail.com');
+    userEvent.type(password, '123456');
+    userEvent.type(passwordConfirmation, '123456');
+    await act(async () => {
       fireEvent.click(button);
     });
-    expect(axiosMock.post).toHaveBeenCalledTimes(1)
-    expect(axiosMock.post).not.toHaveBeenCalledTimes(0)
+    expect(axiosMock.post).toHaveBeenCalledTimes(1);
+    expect(axiosMock.post).not.toHaveBeenCalledTimes(0);
   });
 });
-

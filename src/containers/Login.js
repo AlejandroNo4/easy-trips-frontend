@@ -71,9 +71,9 @@ const Login = () => {
     errors = userState.errors.message;
   }
   return (
-    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
+    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container" data-testid="login-container">
       <p className="error-msg" data-testid="errors-msg">{errors}</p>
-      <h1 className="session-title" data-testid="login-text">Login</h1>
+      <h1 className="session-title">Login</h1>
       <p className="session-description text-center">
         Hello there! please Login and start looking for the perfect trip.
       </p>
