@@ -1,4 +1,5 @@
-import axios from './axios';
+import axios from 'axios';
+import baseURL from './baseURL';
 import * as actions from '../actions';
 
 const fetchingDelete = ({
@@ -11,7 +12,7 @@ const fetchingDelete = ({
   }
   const fetchDelete = async () => {
     try {
-      await axios.delete(url, {
+      await axios.delete(`${baseURL}${url}`, {
         withCredentials: true,
       });
       if (type === 'UI') {

@@ -1,5 +1,6 @@
 import { serialize } from 'object-to-formdata';
-import axios from './axios';
+import axios from 'axios';
+import baseURL from './baseURL';
 import * as actions from '../actions';
 
 const fetchingPatch = ({
@@ -13,7 +14,7 @@ const fetchingPatch = ({
   const dataToSend = serialize(formData);
   const requestingCard = async () => {
     try {
-      const request = await axios.patch(url, dataToSend, {
+      const request = await axios.patch(`${baseURL}${url}`, dataToSend, {
         withCredentials: true,
       });
       const { data } = request;
@@ -24,10 +25,11 @@ const fetchingPatch = ({
         navigate('/');
       }
     } catch (error) {
+      const errMsg = error.response.data;
       if (type === 'UI') {
-        dispatch(actions.userErrors(error));
+        dispatch(actions.userErrors(errMsg));
       } else if (type === 'trip') {
-        dispatch(actions.tripErrors(error));
+        dispatch(actions.tripErrors(errMsg));
       }
     }
   };

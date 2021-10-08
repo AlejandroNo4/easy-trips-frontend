@@ -74,8 +74,16 @@ const UpdateAccount = () => {
       </div>
     );
   }
+
+  let errors;
+  if (userState.loading === false) {
+    const keys = Object.keys(userState.errors);
+    errors = keys.map((key) => `${key}: ${userState.errors[key]}`).join('\n');
+  }
+
   return (
-    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
+    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container" data-testid="update-container">
+      <p className="error-msg" data-testid="update-errs">{errors}</p>
       <h1 className="session-title">Update account</h1>
       <p className="session-description text-center">
         Please, fll out this form.

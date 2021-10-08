@@ -63,11 +63,8 @@ const tripErrors = (errors) => ({
   },
 });
 
-const tripDeleted = (errors) => ({
+const tripDeleted = () => ({
   type: 'TRIP_DELETED',
-  payload: {
-    errors,
-  },
 });
 
 const cleanupTrip = () => ({

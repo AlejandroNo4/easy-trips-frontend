@@ -10,10 +10,10 @@ const TripPreview = ({ trip }) => {
   return (
     <li className="card-container">
       <Link to={`/trips/${trip.id}`}>
-        <img src={imgSrc} alt={trip.destination} className="img-preview" />
+        <img src={imgSrc} alt={trip.destination} className="img-preview" data-testid="img-preview" />
         <div className="description-card d-flex space-between">
           <div>
-            <p className="bm-5">{trip.destination}</p>
+            <p className="bm-5" data-testid="destination-preview">{trip.destination}</p>
             <div className="d-flex stars">
               <FontAwesomeIcon icon={faStar} />
               <FontAwesomeIcon icon={faStar} />
@@ -23,7 +23,7 @@ const TripPreview = ({ trip }) => {
             </div>
           </div>
           <div>
-            <p className="bm-5">{price}</p>
+            <p className="bm-5" data-testid="price-preview">{price}</p>
             <p className="light-text">per person</p>
           </div>
         </div>

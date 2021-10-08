@@ -21,7 +21,7 @@ const FormLogin = ({ handleChange, handleSubmit }) => (
       onChange={handleChange}
       className="form-input"
     />
-    <button type="submit" className="session-btn white">Log In</button>
+    <button type="submit" className="session-btn white" data-testid="login-btn">Log In</button>
   </form>
 );
 

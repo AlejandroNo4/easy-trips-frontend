@@ -1,4 +1,5 @@
-import axios from './axios';
+import axios from 'axios';
+import baseURL from './baseURL';
 import * as actions from '../actions';
 
 const fetchingGet = ({ dispatch, url, type }) => {
@@ -9,7 +10,7 @@ const fetchingGet = ({ dispatch, url, type }) => {
   }
   const requestingCard = async () => {
     try {
-      const request = await axios.get(url, {
+      const request = await axios.get(`${baseURL}${url}`, {
         withCredentials: true,
       });
       const { data } = request;

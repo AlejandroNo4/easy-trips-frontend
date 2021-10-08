@@ -80,8 +80,8 @@ const CreateAccount = () => {
   }
 
   return (
-    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container">
-      <p className="error-msg">{errors}</p>
+    <div className="bg-no-session d-flex justify-center flex-column align-center no-session-container" data-testid="sign-up-container">
+      <p className="error-msg" data-testid="sign-up-errs">{errors}</p>
       <h1 className="session-title">Sign up</h1>
       <p className="session-description text-center">
         Please, create an account.

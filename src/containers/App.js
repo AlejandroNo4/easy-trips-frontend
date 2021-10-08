@@ -52,7 +52,7 @@ function App() {
   }
   if (userState.user.logged_in === true && userState.loading === false) {
     return (
-      <div className="trips-user-container d-flex">
+      <div className="trips-user-container d-flex" data-testid="app">
         <UserPanel display={showPanel} />
         <div>
           <div className="nav-bar d-flex space-between">

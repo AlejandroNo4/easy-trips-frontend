@@ -1,5 +1,6 @@
 import { serialize } from 'object-to-formdata';
-import axios from './axios';
+import axios from 'axios';
+import baseURL from './baseURL';
 import * as actions from '../actions';
 
 const fetchingPost = ({
@@ -13,7 +14,7 @@ const fetchingPost = ({
   const dataToSend = serialize(formData);
   const requestingCard = async () => {
     try {
-      const request = await axios.post(url, dataToSend, {
+      const request = await axios.post(`${baseURL}${url}`, dataToSend, {
         withCredentials: true,
       });
       const { data } = request;

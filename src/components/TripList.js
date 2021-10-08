@@ -32,7 +32,7 @@ const TripList = () => {
   }
 
   return (
-    <ul className="trips-list d-flex align-center h-100">
+    <ul className="trips-list d-flex align-center h-100" data-testid="trips-container">
       {allTrips.map((trip) => (
         <TripPreview trip={trip} key={trip.id} />
       ))}
