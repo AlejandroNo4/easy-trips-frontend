@@ -78,7 +78,7 @@ describe('App Component', () => {
     const button = await screen.findByTestId('logout');
     expect(button).toBeVisible();
     fireEvent.click(button);
-    axiosMock.delete.mockResolvedValueOnce({data: {message: 'logged out'}})
+    axiosMock.delete.mockResolvedValueOnce({ data: { message: 'logged out' } });
     expect(axiosMock.delete).toHaveBeenCalledTimes(1);
     expect(axiosMock.delete).not.toHaveBeenCalledTimes(0);
   });
