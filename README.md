@@ -1,18 +1,32 @@
 ![](https://img.shields.io/badge/Microverse-blueviolet)
 
-# Project Name
+# Easy trips
 
-> One paragraph statement about the project.
+> This is a mobile application that shows trips deal packages. A user can create an account and add it to their favorite list.
 
-![screenshot](./app_screenshot.png)
+<br/>
+<p align="center">
+<img src="app_screenshot_three.png" width="300"/>
+<img src="app_screenshot_two.png" width="300"/>
+<img src="app_screenshot.png" width="300"/>
+</p>
+<br/>
 
-Additional description about the project and its features.
+This project is the final capstone for Microverse, and it was made for learning purposes.
+The project works in conjunction with an API that was built specifically for this project.
+There can be Admin and regular profiles.
+The regular profile can see the list of all trips, modify the profile and manage a personal favorite list.
+Additionally, from the regular actions, the Admin profile can update and edit trip deals.
+The only way to make an Admin profile is through the API, and is explained [here.](https://github.com/AlejandroNo4/capstone-api)
 
 ## Built With
 
-- Major languages
-- Frameworks
-- Technologies used
+- React 
+- Redux
+- [RoR API](https://github.com/AlejandroNo4/capstone-api)
+- CSS
+- Jest
+- React Testing Library
 
 ## Live Demo
 
@@ -21,45 +35,57 @@ Additional description about the project and its features.
 
 ## Getting Started
 
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
-### Setup
+- Node.js installed.
+- Vs Code
 
-### Install
+## Getting Started
 
-### Usage
+To get a local copy up and running, follow these simple example steps.
 
-### Run tests
+- At first, you have to clone this repository. Open your terminal and paste this without the $ sign.
 
-### Deployment
+      $ git clone https://github.com/AlejandroNo4/easy-trips-frontend.git
 
+- Now that you have the repository in your local machine. Change the direction of the local file with your terminal. Just type "$ cd" (without the $ sign) and the path to reach the easy trips folder.<br/>
+  Something like:
 
+      $ cd User/Documents/easy-trips-frontend
 
-## Authors
+- Now run 
 
-👤 **Author1**
+      $npm install
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- You are done with the installations! Now to run the project, first type:
 
-👤 **Author2**
+      $ npm start
 
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- This will automatically open the app on your browser.
+
+<br/>
+
+## Run Tests
+
+- On your terminal run
+
+      $npm test a
+
+## Author
+
+👤 **Alejandro Contreras**
+
+- GitHub: [@AlejandroNo4](https://github.com/AlejandroNo4)
+- Twitter: [@Alejand80002666](https://twitter.com/Alejand80002666)
+- LinkedIn: [Alejandro Contreras Rodriguez](https://www.linkedin.com/in/alejandro-contreras-rodriguez-b524821b5)
 
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](../../issues/).
+Feel free to check the [Issues page](https://github.com/AlejandroNo4/easy-trips-frontend/issues).
 
 ## Show your support
 
@@ -67,9 +93,7 @@ Give a ⭐️ if you like this project!
 
 ## Acknowledgments
 
-- Hat tip to anyone whose code was used
-- Inspiration
-- etc
+- The design was based on [this one](https://www.behance.net/gallery/37706679/Circle-(Landing-page-Dashboard-Mobile-App), created by [Alexey Savitskiy](https://www.behance.net/alexey_savitskiy)
 
 ## 📝 License
 
