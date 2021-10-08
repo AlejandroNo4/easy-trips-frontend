@@ -36,9 +36,10 @@ const FormUpdateUser = ({ handleChange, handleSubmit, imgSelected }) => {
           accept="image/png, image/jpeg"
           onChange={handleChange}
           className="input-file"
+          data-testid="image-update"
         />
       </label>
-      <button type="submit" className="session-btn white">Update</button>
+      <button type="submit" className="session-btn white" data-testid="btn-update">Update</button>
     </form>
   );
 };

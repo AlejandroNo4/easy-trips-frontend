@@ -54,9 +54,10 @@ const FormSignUp = ({ handleChange, handleSubmit, imgSelected }) => {
           accept="image/png, image/jpeg"
           onChange={handleChange}
           className="input-file"
+          data-testid="input-file"
         />
       </label>
-      <button type="submit" className="session-btn white">
+      <button type="submit" className="session-btn white" data-testid="sign-up-btn">
         Submit
       </button>
     </form>

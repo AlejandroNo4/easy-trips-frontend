@@ -103,7 +103,7 @@ const TripManagement = () => {
   }
   return (
     <div className="trip-management d-flex flex-column">
-      <h1 className="session-title">{title}</h1>
+      <h1 className="session-title" data-testid="trip-manage-title">{title}</h1>
       <FormTrip
         handleChange={handleChange}
         handleSubmit={handleSubmit}

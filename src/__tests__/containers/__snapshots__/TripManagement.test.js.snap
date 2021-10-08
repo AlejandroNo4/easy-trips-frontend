@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TripManagement Component matches the snapshot 1`] = `
+<h1
+  class="session-title"
+  data-testid="trip-manage-title"
+>
+  Create Trip
+</h1>
+`;

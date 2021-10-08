@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UpdateAccount Component matches the snapshot 1`] = `
+<h1
+  class="session-title"
+  data-testid="update-title"
+>
+  Update account
+</h1>
+`;

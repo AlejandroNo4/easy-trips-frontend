@@ -23,6 +23,7 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
       step="0.01"
       onChange={handleChange}
       className="trip-input bm-10"
+      data-testid="input-price"
     />
     <p>Description: </p>
     <textarea
@@ -34,6 +35,7 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
       cols="50"
       onChange={handleChange}
       className="trip-input bm-10"
+      data-testid="input-description"
     />
     <p>Days: </p>
     <input
@@ -46,6 +48,7 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
       step="1"
       onChange={handleChange}
       className="trip-input bm-10"
+      data-testid="input-days"
     />
     <p>Hotel: </p>
     <input
@@ -59,7 +62,7 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
       className="trip-input"
     />
     <p>Type: </p>
-    <select name="tripType" id="tripType" onChange={handleChange} className="bm-10">
+    <select name="tripType" id="tripType" onChange={handleChange} className="bm-10" data-testid="input-select">
       <option value="City">City</option>
       <option value="Beach">Beach</option>
       <option value="Ship">Nature</option>
@@ -74,8 +77,9 @@ const FormTrip = ({ handleChange, handleSubmit }) => (
       accept="image/png, image/jpeg"
       onChange={handleChange}
       className="bm-10"
+      data-testid="input-images"
     />
-    <button type="submit" className="session-btn white">Submit</button>
+    <button type="submit" className="session-btn white" data-testid="submit-trip">Submit</button>
   </form>
 );
 
