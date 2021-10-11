@@ -30,7 +30,7 @@ The only way to make an Admin profile is through the API, and is explained [here
 
 ## Live Demo
 
-[Live Demo Link](https://livedemo.com)
+[Live Demo Link](https://easy-trips-no4.herokuapp.com/)
 
 
 ## Getting Started
